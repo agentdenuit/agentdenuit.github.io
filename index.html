@@ -46,10 +46,12 @@
           </div>
         </div>
         <figure class="video" style="margin:0">
-          <!-- Étape 5 : remplacer ce cadre par <video autoplay muted loop playsinline poster="…"> -->
-          <div class="ecran cadre-a-fournir" role="img" aria-label="Emplacement de la vidéo de démonstration">
-            <strong>[Vidéo de la démo : étape 5]</strong>
-            <span>60 à 90 secondes, sans son, sous-titrée</span>
+          <div class="ecran lecteur">
+            <video id="video-demo" autoplay muted loop playsinline preload="metadata" poster="assets/video/demo-horizontale-poster.jpg"
+                   aria-label="Vidéo de démonstration, sans son et sous-titrée : une demande reçue un mardi soir à 21 h 47, jusqu'au rendez-vous validé le lendemain matin.">
+              <source src="assets/video/demo-horizontale.mp4" type="video/mp4">
+            </video>
+            <button class="video-pause" type="button" aria-pressed="false">Mettre en pause</button>
           </div>
           <figcaption class="legende">Démonstration du fonctionnement prévu, avec une agence fictive.</figcaption>
         </figure>
@@ -384,6 +386,14 @@
     </div>
   </footer>
   <script>
+    // Vidéo : lecture automatique sans son, bouton pause, pas de lecture automatique si l'utilisateur limite les animations.
+    (function () {
+      var v = document.getElementById("video-demo"), b = document.querySelector(".video-pause");
+      function maj() { var arret = v.paused; b.textContent = arret ? "Lire la vidéo" : "Mettre en pause"; b.setAttribute("aria-pressed", String(arret)); }
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.pause(); }
+      b.addEventListener("click", function () { if (v.paused) { v.play(); } else { v.pause(); } });
+      v.addEventListener("play", maj); v.addEventListener("pause", maj); maj();
+    })();
     // Sur ordinateur, « Ce que votre agence fournit » est affiché déplié dans la colonne de droite.
     var large = window.matchMedia("(min-width: 900px)");
     function deplier() { document.querySelectorAll("details.fournir").forEach(function (d) { if (large.matches) d.open = true; }); }
