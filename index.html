@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Agent de Nuit · Assistant IA pour agences immobilières</title>
+  <meta name="description" content="Un assistant IA qui répond aux contacts portails en moins de 2 minutes, soir et week-end compris, et propose des rendez-vous que vos agents immobiliers valident dans leur agenda. En phase de lancement en Île-de-France.">
+  <meta name="theme-color" content="#0E1729">
+  <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/newsreader-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/public-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+  <!-- 1. En-tête -->
+  <header class="entete">
+    <div class="conteneur">
+      <a class="logo" href="./" aria-label="Agent de Nuit, accueil">
+        <svg viewBox="0 0 28 44" aria-hidden="true"><rect x="2" y="2" width="24" height="40" rx="3" fill="none" stroke="#ECEFF5" stroke-width="4"/><rect x="8" y="8" width="12" height="28" rx="1" fill="#F2C46D"/><path d="M14 8v28M8 22h12" stroke="#0E1729" stroke-width="2.5"/></svg>
+        Agent de Nuit
+      </a>
+      <nav class="navigation" aria-label="Navigation principale">
+        <a href="#comment-ca-marche">Comment ça marche</a>
+        <a href="#demo">Démo</a>
+        <a href="#conformite">Conformité</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="bouton petit" href="#contact">Demander une démo</a>
+    </div>
+  </header>
+
+  <main id="contenu">
+
+    <!-- 2. Promesse -->
+    <section class="promesse" aria-labelledby="titre-promesse">
+      <div class="conteneur">
+        <div class="promesse-texte">
+          <span class="badge">Nouveau · En phase de lancement</span>
+          <h1 id="titre-promesse">Votre agence répond à chaque contact portail en moins de 2&nbsp;minutes, même quand elle est fermée.</h1>
+          <p class="sous-titre">Agent de Nuit répond aux prospects de SeLoger, Bien'ici et des autres portails, les qualifie et leur propose un rendez-vous. Votre agent immobilier le valide d'un geste dans son agenda.</p>
+          <div class="boutons">
+            <a class="bouton" href="#contact">Demander une démo</a>
+            <a class="bouton secondaire" href="demo/">Voir la démo</a>
+          </div>
+        </div>
+        <figure class="video" style="margin:0">
+          <!-- Étape 5 : remplacer ce cadre par <video autoplay muted loop playsinline poster="…"> -->
+          <div class="ecran cadre-a-fournir" role="img" aria-label="Emplacement de la vidéo de démonstration">
+            <strong>[Vidéo de la démo : étape 5]</strong>
+            <span>60 à 90 secondes, sans son, sous-titrée</span>
+          </div>
+          <figcaption class="legende">Démonstration du fonctionnement prévu, avec une agence fictive.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3. Le problème -->
+    <section class="bande blanche" aria-labelledby="titre-probleme">
+      <div class="conteneur">
+        <div class="entete-section">
+          <h2 id="titre-probleme">Les contacts du soir attendent le lendemain</h2>
+        </div>
+        <p class="scene">Un prospect écrit à <span class="heure">21&nbsp;h</span> sur une annonce de location. Il contacte aussi deux autres agences.</p>
+        <div class="trois">
+          <div class="moment"><h3>Le soir et le week-end</h3><p>Les contacts portails s'accumulent jusqu'à la réouverture.</p></div>
+          <div class="moment"><h3>Le matin</h3><p>Vos agents immobiliers trient les demandes avant de rappeler qui que ce soit.</p></div>
+          <div class="moment"><h3>Pendant ce temps</h3><p>Le prospect risque de visiter avec l'agence qui a répondu la première.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Comment ça marche -->
+    <section class="bande" id="comment-ca-marche" aria-labelledby="titre-marche">
+      <div class="conteneur">
+        <div class="entete-section">
+          <span class="surtitre">Comment ça marche</span>
+          <h2 id="titre-marche">Du contact portail au rendez-vous</h2>
+        </div>
+        <ol class="etapes">
+          <li class="etape">
+            <span class="numero" aria-hidden="true">1</span>
+            <h3>Le contact arrive</h3>
+            <p>Un prospect écrit sur une annonce, à n'importe quelle heure. L'email du portail est transféré automatiquement à Agent de Nuit.</p>
+            <div class="capture cadre-a-fournir"><strong>[Capture démo]</strong><span>Page d'annonce du portail</span></div>
+          </li>
+          <li class="etape">
+            <span class="numero" aria-hidden="true">2</span>
+            <h3>L'assistant répond et qualifie</h3>
+            <p>En moins de 2&nbsp;minutes, il répond par email en tant qu'assistant IA de votre agence, avec un bouton pour continuer sur WhatsApp. Il demande le type de logement, le budget charges comprises, les secteurs, la date d'emménagement et la situation professionnelle. Si le bien est loué, il propose vos autres biens en ligne.</p>
+            <div class="capture cadre-a-fournir"><strong>[Capture démo]</strong><span>Réponse de l'assistant</span></div>
+          </li>
+          <li class="etape">
+            <span class="numero" aria-hidden="true">3</span>
+            <h3>L'agent immobilier valide</h3>
+            <p>L'assistant propose 2 ou 3 créneaux pour un rendez-vous (visite du bien ou rendez-vous en agence, selon votre organisation), lus dans l'agenda de l'agent immobilier. Le créneau choisi est posé en provisoire, l'agent immobilier le valide d'un geste. Le prospect reçoit la confirmation, puis un rappel la veille.</p>
+            <div class="capture cadre-a-fournir"><strong>[Capture démo]</strong><span>Validation du rendez-vous</span></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 5. La démonstration -->
+    <section class="bande blanche" id="demo" aria-labelledby="titre-demo">
+      <div class="conteneur demo-bloc">
+        <div class="entete-section" style="margin-bottom:0">
+          <span class="surtitre">Démonstration</span>
+          <h2 id="titre-demo">Le parcours complet, sur une agence fictive</h2>
+          <p>Côté prospect et côté agent immobilier, sur téléphone et sur ordinateur, en location et en vente.</p>
+          <div class="boutons"><a class="bouton" href="demo/">Ouvrir la démo</a></div>
+        </div>
+        <div class="capture cadre-a-fournir"><strong>[Capture démo]</strong><span>Aperçu de la page démo</span></div>
+      </div>
+    </section>
+
+    <!-- 6. Les cas difficiles -->
+    <section class="bande" aria-labelledby="titre-cas">
+      <div class="conteneur">
+        <div class="entete-section">
+          <span class="surtitre">Les cas difficiles</span>
+          <h2 id="titre-cas">Quand la question est délicate</h2>
+          <p>Quatre exemples écrits pour la démonstration.</p>
+        </div>
+        <div class="cas">
+          <article aria-label="Exemple : le prospect veut négocier le loyer">
+            <span class="etiquette">Exemple</span>
+            <h3>Le prospect veut négocier le loyer</h3>
+            <p class="bulle prospect"><span class="qui">Prospect</span>Le loyer est à 1&nbsp;150&nbsp;€ charges comprises. Vous pouvez descendre à 1&nbsp;050&nbsp;€&nbsp;?</p>
+            <p class="bulle assistant"><span class="qui">Assistant IA</span>Je suis l'assistant IA de l'Agence Exemple et je ne peux pas discuter du loyer. Je transmets votre question à Camille, votre agente immobilière. En attendant, je peux vous proposer un rendez-vous.</p>
+            <p class="regle"><strong>Règle :</strong> l'assistant ne négocie pas.</p>
+          </article>
+          <article aria-label="Exemple : le prospect demande si sa nationalité pose problème">
+            <span class="etiquette">Exemple</span>
+            <h3>Le prospect demande si sa nationalité pose problème</h3>
+            <p class="bulle prospect"><span class="qui">Prospect</span>Je suis de nationalité étrangère, est-ce un problème pour louer&nbsp;?</p>
+            <!-- JURISTE : formulation de la réponse -->
+            <p class="bulle assistant"><span class="qui">Assistant IA</span>Non. La loi interdit de refuser une location en raison de la nationalité. Pour continuer, à partir de quelle date souhaitez-vous emménager&nbsp;?</p>
+            <p class="regle"><strong>Règle :</strong> aucun critère discriminatoire.</p>
+          </article>
+          <article aria-label="Exemple : le prospect demande l'adresse exacte">
+            <span class="etiquette">Exemple</span>
+            <h3>Le prospect demande l'adresse exacte</h3>
+            <p class="bulle prospect"><span class="qui">Prospect</span>C'est à quelle adresse exactement&nbsp;?</p>
+            <p class="bulle assistant"><span class="qui">Assistant IA</span>Le bien se trouve à Colombes, quartier de la Gare, comme indiqué dans l'annonce. Camille vous communique l'adresse exacte avec la confirmation du rendez-vous.</p>
+            <p class="regle"><strong>Règle :</strong> l'assistant ne donne que ce qui figure dans l'annonce.</p>
+          </article>
+          <article aria-label="Exemple : le prospect veut parler à quelqu'un">
+            <span class="etiquette">Exemple</span>
+            <h3>Le prospect veut parler à quelqu'un</h3>
+            <p class="bulle prospect"><span class="qui">Prospect</span>Je préfère parler à quelqu'un.</p>
+            <p class="bulle assistant"><span class="qui">Assistant IA</span>Bien sûr. Je préviens Camille, votre agente immobilière. Elle vous recontacte dès que possible, aux heures d'ouverture de l'agence.</p>
+            <p class="regle"><strong>Règle :</strong> l'assistant passe la main et ne s'engage jamais sur un horaire au nom de l'agent immobilier.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Vous gardez la main -->
+    <section class="bande nuit" aria-labelledby="titre-main">
+      <div class="conteneur">
+        <div class="entete-section">
+          <span class="surtitre">Vous gardez la main</span>
+          <h2 id="titre-main">L'assistant propose, l'agent immobilier décide</h2>
+        </div>
+        <ul class="points">
+          <li><h3>Mode supervision au démarrage</h3><p>L'agent immobilier relit et valide chaque message avant l'envoi.</p></li>
+          <li><h3>Mode automatique quand l'agence le décide</h3></li>
+          <li><h3>Reprise à tout moment</h3><p>L'agent immobilier reprend une conversation, l'assistant cesse d'y répondre.</p></li>
+          <li><h3>Un bouton pour tout arrêter</h3><p>Les contacts portails arrivent alors chez vous comme avant.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 8. Conformité -->
+    <section class="bande blanche" id="conformite" aria-labelledby="titre-conformite">
+      <div class="conteneur">
+        <div class="entete-section">
+          <span class="surtitre">Conformité</span>
+          <h2 id="titre-conformite">Les règles qui encadrent chaque échange</h2>
+        </div>
+        <ul class="faits deux">
+          <li><p><strong>Non-discrimination.</strong> <span>Aucune question sur un critère interdit par la loi.</span></p></li>
+          <li><p><strong>Aucun document collecté.</strong> <span>Aucune pièce du dossier locataire n'est demandée.</span></p></li>
+          <li><p><strong>Transparence.</strong> <span>Le prospect sait qu'il échange avec une IA.</span></p></li>
+          <li><p><strong>RGPD.</strong> <span>Accord de sous-traitance fourni sur demande.</span></p></li>
+        </ul>
+        <p class="note">Votre agence reste responsable de ses pratiques. L'outil applique les règles définies avec vous.</p>
+        <details class="depliable">
+          <summary>Le détail</summary>
+          <div class="contenu">
+            <!-- JURISTE : relire les quatre paragraphes ci-dessous -->
+            <p><strong>Non-discrimination.</strong> L'assistant ne pose aucune question sur un critère interdit par la loi du 6 juillet 1989 et par le Code pénal : origine, nationalité, situation de famille, état de santé, et les autres critères listés par la loi. Il qualifie uniquement sur le logement, le budget, les secteurs, la date d'emménagement et la situation professionnelle.</p>
+            <p><strong>Dossier locataire.</strong> La constitution du dossier reste entre les mains de l'agent immobilier, selon la liste des pièces autorisées par le décret du 5 novembre 2015.</p>
+            <p><strong>Transparence.</strong> L'assistant se présente comme une IA dès le premier message, comme l'exige le règlement européen sur l'intelligence artificielle.</p>
+            <p><strong>Données personnelles.</strong> Agent de Nuit traite les données des prospects pour le compte de votre agence.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 9. Ce que voit l'agent immobilier -->
+    <section class="bande" aria-labelledby="titre-appli">
+      <div class="conteneur appli">
+        <div>
+          <div class="entete-section">
+            <span class="surtitre">Ce que voit l'agent immobilier</span>
+            <h2 id="titre-appli">Une application, sur iPhone et ordinateur</h2>
+          </div>
+          <ul class="faits">
+            <li><p><strong>La fiche prospect :</strong> <span>coordonnées, critères, niveau de qualification.</span></p></li>
+            <li><p><strong>La conversation :</strong> <span>chaque message, avec la possibilité de reprendre la main.</span></p></li>
+            <li><p><strong>Le rendez-vous :</strong> <span>le créneau apparaît en provisoire. Un geste pour le valider.</span></p></li>
+            <li><p><strong>Le récapitulatif du matin,</strong> <span>envoyé à chaque agent immobilier.</span></p></li>
+          </ul>
+        </div>
+        <div class="captures">
+          <div class="telephone cadre-a-fournir"><strong>[Capture démo]</strong><span>Fiche prospect sur iPhone</span></div>
+          <div class="ordinateur cadre-a-fournir"><strong>[Capture démo]</strong><span>Vue ordinateur et validation du rendez-vous</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Pour qui, avec quels outils -->
+    <section class="bande blanche" aria-labelledby="titre-outils">
+      <div class="conteneur">
+        <div class="entete-section">
+          <span class="surtitre">Pour qui</span>
+          <h2 id="titre-outils">Pour les agences indépendantes, sans changer d'outils</h2>
+          <p>Agent de Nuit s'adresse aux agences indépendantes d'Île-de-France, de 1 à 10 agences, qui reçoivent beaucoup de contacts portails en location.</p>
+        </div>
+        <ul class="faits">
+          <li><p><strong>Les contacts portails</strong> <span>sont transférés par email, comme aujourd'hui.</span></p></li>
+          <li><p><strong>Les rendez-vous</strong> <span>arrivent dans l'agenda de vos agents immobiliers. Fonctionne avec Google Agenda et Outlook (Microsoft 365).</span></p></li>
+          <li><p><strong>Les échanges</strong> <span>avec les prospects passent par email et WhatsApp.</span></p></li>
+        </ul>
+        <p class="note">Votre logiciel de transaction et de gestion ne change pas. Agent de Nuit n'y est pas relié.</p>
+      </div>
+    </section>
+
+    <!-- 11. Mise en place -->
+    <section class="bande" aria-labelledby="titre-mise-en-place">
+      <div class="conteneur">
+        <div class="entete-section">
+          <span class="surtitre">Mise en place</span>
+          <h2 id="titre-mise-en-place">Une mise en place faite avec vous</h2>
+        </div>
+        <ol class="parcours">
+          <li><p><strong>Appel de cadrage.</strong> <span>Je fais le point avec vous sur vos agences et vos outils.</span></p></li>
+          <li><p><strong>Configuration.</strong> <span>Règles de rendez-vous, ton, signature, ce que l'assistant ne doit jamais dire.</span></p></li>
+          <li><p><strong>Connexion des agendas.</strong> <span>Google Agenda ou Outlook, pour chaque agent immobilier.</span></p></li>
+          <li><p><strong>Mode supervision.</strong> <span>Vos agents immobiliers valident chaque message avant l'envoi.</span></p></li>
+          <li><p><strong>Passage en automatique,</strong> <span>quand vous le décidez.</span></p></li>
+        </ol>
+        <p class="note">Le délai est fixé ensemble lors de l'appel de cadrage.</p>
+        <details class="depliable">
+          <summary>Ce que votre agence fournit</summary>
+          <div class="contenu">
+            <ul>
+              <li>Un accès administrateur Google Workspace ou Microsoft 365, le temps de connecter les agendas.</li>
+              <li>La liste de vos agences et de vos agents immobiliers.</li>
+              <li>Vos règles de rendez-vous : jours, horaires, durée, temps entre deux rendez-vous, délai minimum.</li>
+              <li>Le transfert automatique des emails de contacts portails vers l'adresse de l'outil.</li>
+              <li>L'autorisation de lire les annonces de votre site ou de votre flux.</li>
+              <li>Un numéro WhatsApp dédié et les documents demandés par Meta pour le vérifier.</li>
+              <li>L'accès à la configuration de votre nom de domaine, pour l'envoi des emails.</li>
+              <li>Votre ton, votre signature et ce que l'assistant ne doit jamais dire.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 12. Sécurité et données -->
+    <section class="bande blanche" aria-labelledby="titre-securite">
+      <div class="conteneur">
+        <div class="entete-section">
+          <span class="surtitre">Sécurité et données</span>
+          <h2 id="titre-securite">Vos données et celles de vos prospects</h2>
+        </div>
+        <ul class="faits deux">
+          <li><p><strong>Base de données et application hébergées en France (Paris).</strong></p></li>
+          <li><p><strong>Aucune donnée utilisée pour entraîner l'IA.</strong></p></li>
+          <li><p><strong>L'IA ne décide de rien :</strong> <span>elle propose, le code vérifie, l'agent immobilier valide.</span></p></li>
+          <li><p><strong>Double authentification</strong> <span>des agents immobiliers, journal des accès, sauvegardes quotidiennes.</span></p></li>
+        </ul>
+        <p class="note"><a class="lien-fleche" href="securite/">Sécurité et données : le détail →</a></p>
+      </div>
+    </section>
+
+    <!-- 13. Agences partenaires du lancement -->
+    <section class="bande nuit" aria-labelledby="titre-partenaires">
+      <div class="conteneur partenaires">
+        <div class="entete-section" style="margin-bottom:0">
+          <span class="surtitre">Agences partenaires du lancement</span>
+          <h2 id="titre-partenaires">Je recherche quelques agences partenaires</h2>
+          <p>Agent de Nuit est en phase de lancement. Je recherche quelques agences indépendantes d'Île-de-France pour le mettre en place avec elles.</p>
+        </div>
+        <div style="display:grid;gap:28px">
+          <ul class="faits">
+            <li><p>Un outil configuré autour de vos règles de rendez-vous, de votre ton et de vos agences.</p></li>
+            <li><p>Un accompagnement direct avec moi, sans service client.</p></li>
+            <li><p>Le mode supervision inclus pendant tout le démarrage.</p></li>
+            <li><p>Vos retours pris en compte en priorité dans les évolutions.</p></li>
+          </ul>
+          <div class="boutons"><a class="bouton" href="#contact">Réserver un appel de 15 minutes</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. Qui suis-je -->
+    <section class="bande blanche" aria-labelledby="titre-moi">
+      <div class="conteneur">
+        <div class="entete-section">
+          <span class="surtitre">Qui suis-je</span>
+          <h2 id="titre-moi">Un seul interlocuteur : moi</h2>
+        </div>
+        <div class="moi">
+          <div class="photo cadre-a-fournir"><strong>[À FOURNIR : photo]</strong></div>
+          <div class="texte">
+            <p class="nom">Quentin Duplessis, fondateur d'Agent de Nuit</p>
+            <p>J'ai travaillé comme maître d'hôtel dans des établissements parisiens de prestige. En salle, un client qui attend est un client perdu. Agent de Nuit repose sur la même idée : répondre vite, répondre juste, et passer la main au bon moment. Je conçois l'outil et je reste votre seul interlocuteur.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. FAQ -->
+    <section class="bande" id="faq" aria-labelledby="titre-faq">
+      <div class="conteneur">
+        <div class="entete-section">
+          <span class="surtitre">Questions fréquentes</span>
+          <h2 id="titre-faq">Vos questions</h2>
+        </div>
+        <div class="faq">
+          <details><summary>Le prospect sait-il qu'il parle à une IA ?</summary><p>Oui. L'assistant se présente comme l'assistant IA de votre agence dès le premier message.</p></details>
+          <details><summary>Que se passe-t-il si l'IA ne sait pas répondre ?</summary><p>Elle le dit au prospect et passe la main à l'agent immobilier. Elle n'invente aucune réponse.</p></details>
+          <details><summary>Et si l'IA se trompe ?</summary><p>Au démarrage, l'agent immobilier valide chaque message avant l'envoi. L'assistant suit des règles strictes et passe la main dès qu'il a un doute. Les rendez-vous restent provisoires tant que l'agent immobilier ne les a pas validés.</p></details>
+          <details><summary>Que se passe-t-il si vous êtes indisponible ?</summary><p>Le code est documenté et les procédures d'incident sont écrites dès la mise en place. Si l'assistant s'arrête, il se coupe proprement : les contacts portails arrivent chez vous comme avant.</p></details>
+          <details><summary>Faut-il changer de logiciel ?</summary><p>Non. Agent de Nuit travaille avec vos emails et vos agendas Google ou Outlook. Votre logiciel métier reste en place.</p></details>
+          <details><summary>Où sont stockées les données ?</summary><p>La base de données et l'application sont hébergées à Paris. Les services techniques utilisés sont listés sur la page <a href="securite/">Sécurité et données</a>.</p></details>
+          <details><summary>Quand pourrai-je l'utiliser ?</summary><p>Le délai est fixé lors de l'appel de cadrage, selon le nombre d'agences et vos outils. Il comprend une période en mode supervision.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. Contact -->
+    <section class="bande nuit" id="contact" aria-labelledby="titre-contact">
+      <div class="conteneur contact">
+        <div class="entete-section" style="margin-bottom:0">
+          <span class="surtitre">Contact</span>
+          <h2 id="titre-contact">Parlons de votre agence</h2>
+          <p>Un appel de 15 minutes pour voir si Agent de Nuit convient à votre agence.</p>
+          <!-- Vidéo de présentation (facultative) : à insérer ici quand elle existe. -->
+          <div class="boutons">
+            <!-- À FOURNIR : remplacer href par le lien de réservation -->
+            <a class="bouton" href="#contact">Réserver un appel de 15 minutes</a>
+          </div>
+          <p class="a-fournir">[À FOURNIR : lien de réservation]</p>
+        </div>
+        <dl class="coordonnees">
+          <div><dt>Téléphone</dt><dd class="a-fournir">[À FOURNIR : téléphone]</dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:quentin.pro.dpls@gmail.com">quentin.pro.dpls@gmail.com</a></dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <!-- 17. Pied de page -->
+  <footer class="pied">
+    <div class="conteneur">
+      <span class="logo">Agent de Nuit</span>
+      <p>Assistant IA pour agences immobilières d'Île-de-France</p>
+      <nav aria-label="Pages légales">
+        <a href="mentions-legales/">Mentions légales</a>
+        <a href="confidentialite/">Politique de confidentialité</a>
+        <a href="securite/">Sécurité et données</a>
+      </nav>
+      <p>© 2026 Agent de Nuit, Quentin Duplessis</p>
+    </div>
+  </footer>
+</body>
+</html>

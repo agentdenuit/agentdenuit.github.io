@@ -1,0 +1,238 @@
+/* Agent de Nuit : feuille de style du site.
+   Identité « La fenêtre allumée » : nuit pour l'en-tête et les bandeaux forts, jour pour la lecture.
+   Règle : le jaune Lampe sert uniquement aux boutons d'action (et à la vitre du logo). */
+
+@font-face { font-family: "Newsreader"; src: url("../fonts/newsreader-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Public Sans"; src: url("../fonts/public-sans-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Public Sans"; src: url("../fonts/public-sans-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Public Sans"; src: url("../fonts/public-sans-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  --nuit: #0E1729;
+  --nuit-2: #17233B;
+  --nuit-ligne: #2C3A57;
+  --lune: #ECEFF5;
+  --brume: #A9B4C8;
+  --lampe: #F2C46D;
+  --lampe-fonce: #E3AE4C;
+  --jour: #F6F7FB;
+  --blanc: #FFFFFF;
+  --encre: #131C33;
+  --ardoise: #4F5B73;
+  --ligne: #DDE1EA;
+  --a-fournir: #B42318;
+
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --largeur: 1120px;
+  --texte: 62ch;
+  --rayon: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 76px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--jour); color: var(--encre); font: 400 1.0625rem/1.6 var(--sans); }
+img, video, svg { max-width: 100%; height: auto; display: block; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+h1, h2 { font-family: var(--serif); font-weight: 500; letter-spacing: -0.005em; }
+h2 { font-size: clamp(1.75rem, 1.3rem + 2vw, 2.5rem); line-height: 1.15; }
+h3 { font-size: 1.1rem; line-height: 1.35; font-weight: 700; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--lampe); outline-offset: 3px; border-radius: 4px; }
+.clair :focus-visible { outline-color: var(--encre); }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.lien-evitement { position: absolute; left: 12px; top: -60px; z-index: 50; background: var(--lampe); color: var(--nuit); padding: 10px 14px; border-radius: 8px; font-weight: 700; }
+.lien-evitement:focus { top: 12px; }
+
+/* Bandes et conteneur : la gouttière latérale est portée par .conteneur */
+.bande { padding-block: clamp(56px, 8vw, 104px); }
+.bande.blanche { background: var(--blanc); }
+.bande.nuit { background: var(--nuit); color: var(--lune); }
+.conteneur {
+  max-width: calc(var(--largeur) + 2 * 24px); margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.entete-section { display: grid; gap: 14px; max-width: 760px; margin-bottom: clamp(28px, 4vw, 44px); }
+.entete-section p { color: var(--ardoise); max-width: var(--texte); }
+.nuit .entete-section p { color: var(--brume); }
+.surtitre { font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ardoise); }
+.nuit .surtitre { color: var(--brume); }
+
+/* Boutons : seuls éléments en jaune Lampe */
+.bouton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 12px 22px; border-radius: 8px;
+  font: 700 1rem/1.2 var(--sans); text-decoration: none; text-align: center; cursor: pointer;
+  background: var(--lampe); color: var(--nuit); border: 1px solid var(--lampe-fonce);
+  transition: background-color .15s ease, transform .15s ease;
+}
+.bouton:hover { background: #F6D188; }
+.bouton:active { transform: translateY(1px); }
+.bouton.secondaire { background: transparent; color: var(--lune); border-color: var(--brume); }
+.bouton.secondaire:hover { background: var(--nuit-2); }
+.bouton.petit { min-height: 42px; padding: 9px 14px; font-size: .9rem; white-space: nowrap; }
+@media (max-width: 480px) {
+  .logo { font-size: 1.15rem; gap: 8px; }
+  .logo svg { width: 17px; }
+  .promesse .boutons .bouton { flex: 1 1 100%; }
+}
+.boutons { display: flex; flex-wrap: wrap; gap: 12px; }
+.lien-fleche { font-weight: 700; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+
+/* Repères visibles pour les informations manquantes */
+.a-fournir { color: var(--a-fournir); font-weight: 700; }
+.nuit .a-fournir, .nuit .entete-section p.a-fournir { color: #FF9B8F; }
+.cadre-a-fournir {
+  display: grid; place-items: center; align-content: center; text-align: center; gap: 6px; padding: 24px;
+  border: 2px dashed var(--ligne); border-radius: var(--rayon); color: var(--ardoise);
+  font-size: .95rem; background: var(--jour);
+}
+.nuit .cadre-a-fournir, .promesse .cadre-a-fournir { border-color: var(--nuit-ligne); color: var(--brume); background: var(--nuit-2); }
+.cadre-a-fournir strong { color: var(--a-fournir); }
+.nuit .cadre-a-fournir strong, .promesse .cadre-a-fournir strong { color: #FF9B8F; }
+
+/* ---------- En-tête ---------- */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--nuit); z-index: 30; }
+.entete { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--nuit); color: var(--lune); border-bottom: 1px solid var(--nuit-ligne); }
+.entete .conteneur { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 500 1.3rem/1 var(--serif); white-space: nowrap; }
+.logo svg { width: 20px; height: auto; flex: none; }
+.navigation { display: none; gap: 28px; font-size: .95rem; }
+.navigation a { text-decoration: none; color: var(--brume); }
+.navigation a:hover { color: var(--lune); }
+@media (min-width: 900px) { .navigation { display: flex; } }
+
+/* ---------- Promesse ---------- */
+.promesse { background: var(--nuit); color: var(--lune); padding-block: clamp(40px, 6vw, 88px) clamp(56px, 7vw, 96px); }
+.promesse .conteneur { display: grid; gap: clamp(32px, 5vw, 56px); align-items: center; }
+@media (min-width: 960px) { .promesse .conteneur { grid-template-columns: 1.05fr 1fr; } }
+.badge {
+  justify-self: start; display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px; border: 1px solid var(--nuit-ligne); background: var(--nuit-2);
+  font-size: .85rem; font-weight: 600;
+}
+.badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--lune); }
+.promesse-texte { display: grid; gap: 22px; min-width: 0; }
+.promesse h1 { font-size: clamp(2.05rem, 1.4rem + 3.2vw, 3.4rem); line-height: 1.08; }
+.promesse .sous-titre { color: var(--brume); font-size: 1.125rem; max-width: 54ch; }
+.video { display: grid; gap: 10px; min-width: 0; }
+.video .ecran { aspect-ratio: 16 / 10; width: 100%; max-width: 100%; }
+.video .legende { font-size: .85rem; color: var(--brume); }
+
+/* ---------- Le problème ---------- */
+.scene { font-family: var(--serif); font-size: clamp(1.25rem, 1.05rem + 1vw, 1.6rem); line-height: 1.35; max-width: 40ch; margin-bottom: 32px; }
+.scene .heure { font-family: var(--sans); font-variant-numeric: tabular-nums; font-weight: 700; }
+.trois { display: grid; gap: 16px; }
+@media (min-width: 760px) { .trois { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+.moment { display: grid; gap: 8px; padding-top: 18px; border-top: 2px solid var(--encre); min-width: 0; }
+.moment p { color: var(--ardoise); }
+
+/* ---------- Comment ça marche ---------- */
+.etapes { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; counter-reset: etape; }
+@media (min-width: 900px) { .etapes { grid-template-columns: repeat(3, 1fr); gap: 28px; } }
+.etape { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.etape .numero { font: 500 2.4rem/1 var(--serif); color: var(--ardoise); font-variant-numeric: tabular-nums; }
+.etape p { color: var(--ardoise); }
+.etape .capture { aspect-ratio: 4 / 3; }
+
+/* ---------- Démonstration ---------- */
+.demo-bloc { display: grid; gap: 28px; align-items: center; }
+@media (min-width: 900px) { .demo-bloc { grid-template-columns: 1fr 1.2fr; } }
+.demo-bloc .capture { aspect-ratio: 16 / 10; }
+
+/* ---------- Cas difficiles ---------- */
+.cas { display: grid; gap: 20px; }
+@media (min-width: 820px) { .cas { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
+.cas article { background: var(--blanc); border: 1px solid var(--ligne); border-radius: 14px; padding: 22px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+.bande.blanche .cas article { background: var(--jour); }
+.etiquette { justify-self: start; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ardoise); border: 1px solid var(--ligne); border-radius: 999px; padding: 3px 10px; }
+.bulle { max-width: 88%; padding: 12px 14px; border-radius: 14px; font-size: .98rem; line-height: 1.5; }
+.bulle .qui { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .04em; margin-bottom: 2px; }
+.bulle.prospect { justify-self: end; background: var(--ligne); color: var(--encre); border-bottom-right-radius: 4px; }
+.bulle.assistant { justify-self: start; background: var(--nuit); color: var(--lune); border-bottom-left-radius: 4px; }
+.bulle.assistant .qui { color: var(--brume); }
+.regle { font-size: .92rem; color: var(--ardoise); border-top: 1px solid var(--ligne); padding-top: 12px; }
+.regle strong { color: var(--encre); }
+.juriste { display: none; }
+
+/* ---------- Vous gardez la main ---------- */
+.points { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--nuit-ligne); border: 1px solid var(--nuit-ligne); border-radius: 14px; overflow: hidden; }
+@media (min-width: 760px) { .points { grid-template-columns: repeat(2, 1fr); } }
+.points li { background: var(--nuit); padding: 22px; display: grid; gap: 6px; align-content: start; }
+.points li p { color: var(--brume); }
+
+/* ---------- Listes de faits (conformité, sécurité, application, outils) ---------- */
+.faits { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+@media (min-width: 760px) { .faits.deux { grid-template-columns: repeat(2, 1fr); gap: 16px 32px; } }
+.faits li { display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start; min-width: 0; }
+.faits li::before { content: ""; width: 10px; height: 10px; margin-top: .55em; border: 2px solid var(--encre); border-radius: 2px; }
+.nuit .faits li::before { border-color: var(--lune); }
+.faits li span { color: var(--ardoise); }
+.nuit .faits li span { color: var(--brume); }
+.note { margin-top: 22px; color: var(--ardoise); max-width: var(--texte); }
+
+/* Blocs à déplier */
+details.depliable { margin-top: 24px; border: 1px solid var(--ligne); border-radius: var(--rayon); background: var(--blanc); }
+.bande.blanche details.depliable { background: var(--jour); }
+details.depliable summary { cursor: pointer; list-style: none; padding: 16px 20px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 48px; }
+details.depliable summary::-webkit-details-marker { display: none; }
+details.depliable summary::after { content: "+"; font: 400 1.5rem/1 var(--sans); }
+details.depliable[open] summary::after { content: "−"; }
+details.depliable .contenu { padding: 0 20px 20px; display: grid; gap: 12px; }
+details.depliable .contenu p, details.depliable .contenu li { color: var(--ardoise); max-width: var(--texte); }
+details.depliable ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
+
+/* ---------- Ce que voit l'agent ---------- */
+.appli { display: grid; gap: 32px; align-items: center; }
+@media (min-width: 900px) { .appli { grid-template-columns: 1fr 1.15fr; } }
+.captures { display: grid; grid-template-columns: 1fr 2fr; gap: 14px; }
+.captures .telephone { aspect-ratio: 9 / 19; }
+.captures .ordinateur { aspect-ratio: 16 / 11; align-self: center; }
+.captures .cadre-a-fournir { padding: 12px; font-size: .85rem; }
+
+/* ---------- Mise en place ---------- */
+.parcours { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: pas; max-width: 760px; }
+.parcours li { counter-increment: pas; display: grid; grid-template-columns: 44px 1fr; gap: 14px; padding-block: 14px; border-bottom: 1px solid var(--ligne); }
+.parcours li::before { content: counter(pas); font: 500 1.5rem/1.2 var(--serif); color: var(--ardoise); }
+.parcours li span { color: var(--ardoise); }
+
+/* ---------- Partenaires ---------- */
+.partenaires { display: grid; gap: 32px; }
+@media (min-width: 900px) { .partenaires { grid-template-columns: 1fr 1fr; align-items: start; } }
+
+/* ---------- Qui suis-je ---------- */
+.moi { display: grid; gap: 24px; align-items: start; max-width: 900px; }
+@media (min-width: 700px) { .moi { grid-template-columns: 200px 1fr; gap: 40px; } }
+.moi .photo { aspect-ratio: 1; max-width: 200px; border-radius: 50%; }
+.moi .texte { display: grid; gap: 14px; }
+.moi .nom { font-weight: 700; }
+.moi .texte p:last-child { font-family: var(--serif); font-size: 1.25rem; line-height: 1.5; }
+
+/* ---------- FAQ ---------- */
+.faq { display: grid; gap: 0; max-width: 820px; border-top: 1px solid var(--ligne); }
+.faq details { border-bottom: 1px solid var(--ligne); }
+.faq summary { cursor: pointer; list-style: none; padding: 18px 0; font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; gap: 16px; align-items: center; min-height: 56px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font: 400 1.5rem/1 var(--sans); flex: none; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { padding: 0 0 20px; color: var(--ardoise); max-width: var(--texte); }
+
+/* ---------- Contact ---------- */
+.contact { display: grid; gap: 32px; }
+@media (min-width: 900px) { .contact { grid-template-columns: 1.2fr 1fr; align-items: start; } }
+.coordonnees { display: grid; gap: 16px; font-size: 1.1rem; }
+.coordonnees dt { font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brume); }
+.coordonnees dd { margin: 4px 0 0; font-weight: 600; word-break: break-word; }
+.coordonnees a { text-underline-offset: 4px; }
+
+/* ---------- Pied de page ---------- */
+.pied { background: var(--nuit); color: var(--brume); border-top: 1px solid var(--nuit-ligne); padding-block: 36px 44px; font-size: .92rem; }
+.pied .conteneur { display: grid; gap: 18px; }
+.pied .logo { color: var(--lune); }
+.pied nav { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+.pied a { color: var(--lune); text-underline-offset: 3px; }
