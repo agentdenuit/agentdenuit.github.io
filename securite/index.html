@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sécurité et données · Agent de Nuit</title>
+  <meta name="description" content="Hébergement en France (Paris), règles de l'assistant, modes supervision et automatique, mesures de sécurité et services techniques d'Agent de Nuit.">
+  <link rel="canonical" href="https://agentdenuit.github.io/securite/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Agent de Nuit">
+  <meta property="og:url" content="https://agentdenuit.github.io/securite/">
+  <meta property="og:title" content="Sécurité et données · Agent de Nuit">
+  <meta property="og:description" content="Hébergement en France (Paris), règles de l'assistant, modes supervision et automatique, mesures de sécurité et services techniques d'Agent de Nuit.">
+  <meta property="og:image" content="https://agentdenuit.github.io/assets/og/apercu.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Agent de Nuit, assistant IA pour agences immobilières">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0E1729">
+  <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/logo/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
+  <link rel="preload" href="../assets/fonts/newsreader-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/public-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+  <header class="entete">
+    <div class="conteneur">
+      <a class="logo" href="../" aria-label="Agent de Nuit, accueil">
+        <svg viewBox="0 0 28 44" aria-hidden="true"><rect x="2" y="2" width="24" height="40" rx="3" fill="none" stroke="#ECEFF5" stroke-width="4"/><rect x="8" y="8" width="12" height="28" rx="1" fill="#F2C46D"/><path d="M14 8v28M8 22h12" stroke="#0E1729" stroke-width="2.5"/></svg>
+        Agent de Nuit
+      </a>
+      <nav class="navigation" aria-label="Navigation principale">
+        <a href="../#comment-ca-marche">Comment ça marche</a>
+        <a href="../demo/">Démo</a>
+        <a href="../#conformite">Conformité</a>
+        <a href="../#faq">FAQ</a>
+      </nav>
+      <a class="bouton petit" href="mailto:quentin.pro.dpls@gmail.com?subject=Demande%20de%20d%C3%A9mo%20Agent%20de%20Nuit&amp;body=Bonjour%20Quentin%2C%0A%0AJe%20souhaite%20voir%20une%20d%C3%A9monstration%20d%27Agent%20de%20Nuit.%0A%0AAgence%20%3A%0ANombre%20d%27agences%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0ACr%C3%A9neaux%20qui%20me%20conviennent%20%3A%0A%0ACordialement%2C%0A">Demander une démo</a>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="page-titre" aria-labelledby="titre-page">
+      <div class="conteneur">
+        <p class="fil"><a href="../">Accueil</a></p>
+        <h1 id="titre-page">Sécurité et données</h1>
+        <p>Comment Agent de Nuit traite vos données et celles de vos prospects, et les règles que suit l'assistant.</p>
+      </div>
+    </section>
+    <div class="bande">
+      <div class="conteneur texte-page">
+        <section aria-labelledby="s-heb">
+          <h2 id="s-heb">Hébergement</h2>
+          <p><strong>Base de données et application hébergées en France (Paris).</strong> La base de données est hébergée chez Supabase, dans sa région de Paris. L'application et ses fonctions sont hébergées chez Vercel, dans sa région de Paris.</p>
+          <p>D'autres services techniques interviennent pour l'envoi des emails, les messages WhatsApp, l'agenda et l'IA. Ils sont listés plus bas, avec leur rôle.</p>
+        </section>
+
+        <section aria-labelledby="s-ia">
+          <h2 id="s-ia">L'IA ne décide de rien</h2>
+          <p>L'IA propose, le code vérifie, l'agent immobilier valide.</p>
+          <ul class="liste">
+            <li>L'IA lit les messages et rédige les réponses. Elle ne modifie jamais directement l'agenda ni les fiches : elle renvoie des informations structurées, que le code contrôle avant toute action.</li>
+            <li>Les créneaux proposés sont calculés par le code, à partir de l'agenda de l'agent immobilier et des règles de rendez-vous de l'agence. L'IA ne peut pas en inventer.</li>
+            <li>Un rendez-vous reste provisoire tant que l'agent immobilier ne l'a pas validé.</li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="s-entr">
+          <h2 id="s-entr">Aucune donnée utilisée pour entraîner l'IA</h2>
+          <p>Le modèle d'IA utilisé est Claude, de la société Anthropic. Il est utilisé dans le cadre des conditions commerciales d'Anthropic, qui excluent l'entraînement de ses modèles sur les données transmises.</p>
+        </section>
+
+        <section aria-labelledby="s-modes">
+          <h2 id="s-modes">Les modes de l'assistant</h2>
+          <ul class="liste">
+            <li><strong>Supervision, au démarrage.</strong> La première réponse et les questions de qualification partent tout de suite ; vos agents immobiliers valident les autres réponses avant l'envoi.</li>
+            <li><strong>Automatique,</strong> quand l'agence le décide, agence par agence.</li>
+            <li><strong>Pause.</strong> Un bouton coupe l'assistant immédiatement. Les contacts portails arrivent alors chez vous comme avant.</li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="s-regles">
+          <h2 id="s-regles">Les règles de l'assistant</h2>
+          <p>Ces règles s'appliquent à chaque échange, quel que soit le mode.</p>
+          <ol class="regles">
+            <li>Il dit toujours qu'il est une IA, dès le premier message et chaque fois qu'on le lui demande.</li>
+            <li>Il n'invente rien : il ne donne que les informations présentes dans l'annonce.</li>
+            <li>Il ne négocie ni le loyer ni le prix.</li>
+            <li>Il ne prend aucun engagement au nom de l'agence.</li>
+            <li>Il ne dit jamais qu'une candidature est acceptée ou refusée.</li>
+            <li>Il ne pose aucune question discriminatoire.</li>
+            <li>Il ne demande aucun document.</li>
+            <li>Il ne donne jamais l'adresse exacte d'un bien. L'agent immobilier la communique avec la confirmation du rendez-vous.</li>
+            <li>Il présente toujours le créneau comme provisoire tant que l'agent immobilier ne l'a pas validé.</li>
+            <li>Il passe la main à l'agent immobilier dès qu'il a un doute, ou dès que le prospect le demande.</li>
+            <li>Il respecte la demande d'arrêt du prospect (réponse STOP ou lien de désinscription), sur tous les canaux.</li>
+            <li>Si l'IA est indisponible, le prospect reçoit un message prévu à l'avance et l'agent immobilier est prévenu.</li>
+          </ol>
+        </section>
+
+        <section aria-labelledby="s-mesures">
+          <h2 id="s-mesures">Les mesures de sécurité de la solution</h2>
+          <ul class="liste">
+            <li><strong>Double authentification</strong> obligatoire pour les agents immobiliers.</li>
+            <li><strong>Journal des accès :</strong> chaque connexion, consultation, modification ou suppression est enregistrée (qui, quoi, quand). Le journal ne peut pas être modifié par les agents immobiliers.</li>
+            <li><strong>Sauvegardes quotidiennes</strong> de la base de données.</li>
+            <li><strong>Cloisonnement :</strong> chaque agence ne voit que ses propres données.</li>
+            <li><strong>Données minimales :</strong> chaque service ne reçoit que ce dont il a besoin. Les outils de suivi technique ne reçoivent aucune donnée personnelle.</li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="s-st">
+          <h2 id="s-st">Les services techniques sur lesquels repose Agent de Nuit</h2>
+          <div class="tableau">
+            <table>
+              <caption class="sr-only">Sous-traitants techniques, rôle et lieu</caption>
+              <thead><tr><th scope="col">Service</th><th scope="col">Rôle</th><th scope="col">Lieu ou précision</th></tr></thead>
+              <tbody>
+                <tr><td>Supabase</td><td>Base de données, comptes des agents immobiliers, sauvegardes</td><td>Région de Paris</td></tr>
+                <tr><td>Vercel</td><td>Hébergement de l'application</td><td>Société américaine, fonctions en région de Paris</td></tr>
+                <tr><td>Brevo</td><td>Envoi et réception des emails</td><td>Union européenne</td></tr>
+                <tr><td>Anthropic</td><td>Modèle d'IA Claude</td><td>Société américaine. Pas d'entraînement sur les données, selon ses conditions commerciales</td></tr>
+                <tr><td>Meta</td><td>Messages WhatsApp</td><td>Société américaine</td></tr>
+                <tr><td>Google</td><td>Lecture et écriture des rendez-vous dans Google Agenda</td><td>Société américaine</td></tr>
+                <tr><td>Microsoft</td><td>Lecture et écriture des rendez-vous dans Outlook (Microsoft 365), si l'agence utilise Outlook</td><td>Société américaine</td></tr>
+                <tr><td>Inngest ou Supabase Queues <span class="a-fournir">[À CONFIRMER]</span></td><td>Tâches en arrière-plan</td><td>Uniquement des identifiants, aucune donnée personnelle</td></tr>
+                <tr><td>Sentry</td><td>Suivi des erreurs</td><td>Union européenne (Francfort), sans donnée personnelle</td></tr>
+                <tr><td>Better Stack</td><td>Surveillance de la disponibilité</td><td>Sans donnée personnelle</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section aria-labelledby="s-rgpd">
+          <h2 id="s-rgpd">RGPD</h2>
+          <p>Pour les données des prospects, votre agence est responsable du traitement et Agent de Nuit agit comme sous-traitant. <strong>Un accord de sous-traitance est fourni sur demande</strong> : <a href="mailto:quentin.pro.dpls@gmail.com">quentin.pro.dpls@gmail.com</a>.</p>
+        </section>
+
+        <p class="encadre">Agent de Nuit est en phase de lancement. Cette page décrit le fonctionnement de la solution. Agent de Nuit ne revendique aucune certification de sécurité.</p>
+
+        <p class="date-maj">Dernière mise à jour : 10 novembre 2026.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur">
+      <span class="logo">Agent de Nuit</span>
+      <p>Assistant IA pour agences immobilières d'Île-de-France</p>
+      <nav aria-label="Pages légales">
+        <a href="../mentions-legales/">Mentions légales</a>
+        <a href="../confidentialite/">Politique de confidentialité</a>
+        <a href="../securite/">Sécurité et données</a>
+      </nav>
+      <p>© 2026 Agent de Nuit, Quentin Duplessis · SIRET 934 475 724 00019</p>
+    </div>
+  </footer>
+</body>
+</html>
