@@ -77,8 +77,7 @@ a { color: inherit; }
 .bouton.secondaire:hover { background: var(--nuit-2); }
 .bouton.petit { min-height: 42px; padding: 9px 14px; font-size: .9rem; white-space: nowrap; }
 @media (max-width: 480px) {
-  .logo { font-size: 1.15rem; gap: 8px; }
-  .logo svg { width: 17px; }
+  .logo img { height: 25px; }
   .promesse .boutons .bouton { flex: 1 1 100%; }
 }
 .boutons { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -100,8 +99,8 @@ a { color: inherit; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--nuit); z-index: 30; }
 .entete { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--nuit); color: var(--lune); border-bottom: 1px solid var(--nuit-ligne); }
 .entete .conteneur { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
-.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 500 1.3rem/1 var(--serif); white-space: nowrap; }
-.logo svg { width: 20px; height: auto; flex: none; }
+.logo { display: inline-flex; align-items: center; text-decoration: none; flex: none; }
+.logo img { display: block; height: 30px; width: auto; }
 .navigation { display: none; gap: 28px; font-size: .95rem; }
 .navigation a { text-decoration: none; color: var(--brume); }
 .navigation a:hover { color: var(--lune); }
@@ -247,7 +246,7 @@ details.depliable ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; 
 /* ---------- Pied de page ---------- */
 .pied { background: var(--nuit); color: var(--brume); border-top: 1px solid var(--nuit-ligne); padding-block: 36px 44px; font-size: .92rem; }
 .pied .conteneur { display: grid; gap: 18px; }
-.pied .logo { color: var(--lune); }
+.pied .logo-pied { display: block; height: 32px; width: auto; }
 .pied nav { display: flex; flex-wrap: wrap; gap: 10px 24px; }
 .pied a { color: var(--lune); text-underline-offset: 3px; }
 

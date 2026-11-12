@@ -28,6 +28,10 @@ window.AGENCE = {
 <title>Démonstration · Agent de Nuit</title>
 <meta name="description" content="Démonstration du fonctionnement prévu d'Agent de Nuit avec une agence fictive : une demande reçue via un portail immobilier un mardi soir, jusqu'au rendez-vous validé le lendemain matin. Location et vente.">
 <meta name="theme-color" content="#0E1729">
+  <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/logo/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
   <link rel="canonical" href="https://agentdenuit.github.io/demo/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
@@ -40,9 +44,6 @@ window.AGENCE = {
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Agent de Nuit, assistant IA pour agences immobilières">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="../assets/logo/favicon-32.png" type="image/png" sizes="32x32">
-  <link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
-<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="../assets/fonts/public-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 :root{
@@ -760,7 +761,8 @@ img{display:block}
 body{background:var(--adn-jour);color:var(--adn-encre)}
 .adn-head{background:var(--adn-nuit);color:var(--adn-lune);border-bottom:1px solid #2C3A57}
 .adn-head-in{max-width:1500px;margin:0 auto;padding:14px max(20px,env(safe-area-inset-left,0px));display:flex;align-items:center;justify-content:space-between;gap:16px}
-.adn-logo{display:inline-flex;align-items:center;gap:10px;color:var(--adn-lune);text-decoration:none;font:500 21px/1 "Newsreader",Georgia,serif}
+.adn-logo{display:inline-flex;align-items:center;text-decoration:none}
+.adn-logo img{display:block;height:28px;width:auto}
 .adn-retour{color:var(--adn-brume);font-size:14px;font-weight:600;text-underline-offset:4px}
 .demo-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;padding:6px 14px;border-radius:999px;background:var(--adn-nuit);color:var(--adn-lune);font-size:13px;font-weight:600}
 .demo-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--adn-lune)}
@@ -803,10 +805,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(-
 
 <header class="adn-head">
   <div class="adn-head-in">
-    <a class="adn-logo" href="../" aria-label="Agent de Nuit, retour au site">
-      <svg viewBox="0 0 28 44" width="18" aria-hidden="true"><rect x="2" y="2" width="24" height="40" rx="3" fill="none" stroke="#ECEFF5" stroke-width="4"/><rect x="8" y="8" width="12" height="28" rx="1" fill="#F2C46D"/><path d="M14 8v28M8 22h12" stroke="#0E1729" stroke-width="2.5"/></svg>
-      Agent de Nuit
-    </a>
+    <a class="adn-logo" href="../"><img src="../assets/logo/logo-une-ligne-sombre.svg" alt="Agent de Nuit, retour au site" width="133" height="28"></a>
     <a class="adn-retour" href="../">Retour au site</a>
   </div>
 </header>

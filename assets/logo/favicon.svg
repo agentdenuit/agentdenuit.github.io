@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-  <rect width="16" height="16" rx="3" fill="#0E1729"/>
-  <rect x="4" y="2" width="8" height="12" fill="#ECEFF5"/>
-  <rect x="5" y="3" width="6" height="10" fill="#F2C46D"/>
-  <path d="M5 8.5h6" stroke="#0E1729" stroke-width="1"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-label="Agent de Nuit"><rect width="16" height="16" rx="3" fill="#0E1729"/><path fill="#F2C46D" fill-rule="evenodd" d="M3.02 8A5.5 5.5 0 0 1 8 3.02V8Z M9 3.02A5.5 5.5 0 0 1 13.98 8H9Z M3 9H8V14H3Z M9 9H14V14H9Z"/></svg>
