@@ -145,6 +145,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .etape p { color: var(--ardoise); }
 .etape .capture { aspect-ratio: 4 / 3; }
 
+/* Captures de la démonstration */
+.capture-img { margin: 0; background: var(--blanc); border: 1px solid var(--ligne); border-radius: var(--rayon); padding: 18px; display: grid; place-items: center; min-width: 0; }
+.capture-img img { max-height: 340px; width: auto; height: auto; }
+.capture-img.large { padding: 0; overflow: hidden; }
+.capture-img.large img { max-height: none; width: 100%; }
+.captures { align-items: center; }
+.captures .capture-img:not(.large) { padding: 12px; }
+
 /* ---------- Démonstration ---------- */
 .demo-bloc { display: grid; gap: 28px; align-items: center; }
 @media (min-width: 900px) { .demo-bloc { grid-template-columns: 1fr 1.2fr; } }
@@ -275,3 +283,6 @@ details.depliable ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; 
 .tableau td:first-child { font-weight: 700; color: var(--encre); white-space: nowrap; }
 .encadre { border: 1px solid var(--ligne); background: var(--blanc); border-radius: var(--rayon); padding: 18px 20px; }
 .date-maj { font-size: .9rem; color: var(--ardoise); }
+
+/* Captures de l'application : l'une sous l'autre sur téléphone */
+@media (max-width: 600px) { .captures { grid-template-columns: 1fr; } .captures .capture-img img { max-height: 420px; } .captures .capture-img.large img { max-height: none; } }
