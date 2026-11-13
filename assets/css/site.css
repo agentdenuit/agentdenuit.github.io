@@ -150,8 +150,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .capture-img img { max-height: 340px; width: auto; height: auto; }
 .capture-img.large { padding: 0; overflow: hidden; }
 .capture-img.large img { max-height: none; width: 100%; }
-.captures { align-items: center; }
-.captures .capture-img:not(.large) { padding: 12px; }
 
 /* ---------- Démonstration ---------- */
 .demo-bloc { display: grid; gap: 28px; align-items: center; }
@@ -202,11 +200,11 @@ details.depliable ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; 
 
 /* ---------- Ce que voit l'agent ---------- */
 .appli { display: grid; gap: 32px; align-items: center; }
-@media (min-width: 900px) { .appli { grid-template-columns: 1fr 1.15fr; } }
-.captures { display: grid; grid-template-columns: 1fr 2fr; gap: 14px; }
-.captures .telephone { aspect-ratio: 9 / 19; }
-.captures .ordinateur { aspect-ratio: 16 / 11; align-self: center; }
-.captures .cadre-a-fournir { padding: 12px; font-size: .85rem; }
+@media (min-width: 900px) { .appli { grid-template-columns: 1.3fr 1fr; } }
+.etape .capture-img img { width: 220px; max-height: none; }
+.appli-tel img { width: 260px; max-height: none; }
+.appli-ordi { grid-column: 1 / -1; }
+@media (max-width: 600px) { .appli-ordi { display: none; } }
 
 /* ---------- Mise en place ---------- */
 .parcours { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: pas; max-width: 760px; }
@@ -285,4 +283,3 @@ details.depliable ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; 
 .date-maj { font-size: .9rem; color: var(--ardoise); }
 
 /* Captures de l'application : l'une sous l'autre sur téléphone */
-@media (max-width: 600px) { .captures { grid-template-columns: 1fr; } .captures .capture-img img { max-height: 420px; } .captures .capture-img.large img { max-height: none; } }
