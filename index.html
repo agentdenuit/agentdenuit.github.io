@@ -90,16 +90,77 @@
             <li><svg class="ico" aria-hidden="true"><use href="#i-ia"/></svg>Le prospect sait qu'il parle à une IA</li>
           </ul>
         </div>
-        <figure class="video" style="margin:0">
-          <div class="ecran lecteur">
-            <video id="video-demo" autoplay muted loop playsinline preload="metadata" poster="assets/video/demo-horizontale-poster.jpg"
-                   aria-label="Vidéo de démonstration, sans son et sous-titrée : une demande reçue un mardi soir à 21 h 47, jusqu'au rendez-vous validé le lendemain matin.">
-              <source src="assets/video/demo-horizontale.mp4" type="video/mp4">
-            </video>
-            <button class="video-pause" type="button" aria-pressed="false">Mettre en pause</button>
+        <figure class="sim-cadre">
+          <div class="sim" id="sim" aria-hidden="true">
+            <span class="sim-badge">Exemple fictif</span>
+            <div class="sim-tel">
+              <div class="sim-tel-tete"><span class="sim-av">E</span><div><b>Assistant Agence Exemple</b><small>T2 meublé, Colombes</small></div></div>
+              <div class="sim-fil">
+                <div class="sim-m pros on" data-m="1"><p>Bonjour, ce T2 est-il toujours disponible ?</p><time>21:00</time></div>
+                <div class="sim-m ia on" data-m="2"><span class="sim-ecrit">écrit<i>.</i><i>.</i><i>.</i></span><p>Oui. Je suis l'assistant IA de l'Agence Exemple. Quel budget, charges comprises, et dans quels secteurs ?</p><time>21:02</time></div>
+                <div class="sim-m pros on" data-m="3"><p>1 200 €, à Colombes. J'emménage d'ici un mois, je suis en CDI.</p><time>21:04</time></div>
+              </div>
+            </div>
+            <div class="sim-fiche">
+              <div class="sim-fiche-tete">
+                <span class="sim-av clair">TM</span><div><b>Thomas Martin</b><small>Fiche prospect</small></div>
+                <svg class="sim-jauge" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/><circle class="arc" cx="20" cy="20" r="16" pathLength="100" style="stroke-dashoffset:0"/><text x="20" y="24.5" text-anchor="middle">100</text></svg>
+              </div>
+              <ul class="sim-crit"><li class="on"><i class="coche"></i><span>Logement</span><b>T2</b></li><li class="on"><i class="coche"></i><span>Budget CC</span><b>1 200 €</b></li><li class="on"><i class="coche"></i><span>Secteurs</span><b>Colombes</b></li><li class="on"><i class="coche"></i><span>Emménagement</span><b>D'ici un mois</b></li><li class="on"><i class="coche"></i><span>Situation</span><b>CDI</b></li></ul>
+              <div class="sim-rdv on confirme"><div><small><span class="p">Rendez-vous provisoire</span><span class="c">Rendez-vous confirmé</span></small><b>Jeudi, 18:30</b></div><span class="sim-valider"><span class="p">Valider</span><span class="c">Confirmé</span></span></div>
+            </div>
           </div>
-          <figcaption class="legende">Démonstration du fonctionnement prévu, avec une agence fictive.</figcaption>
+          <div class="sim-pied">
+            <figcaption class="legende">Démonstration du fonctionnement prévu, avec une agence fictive.<span class="sr-only"> Animation : un prospect écrit à 21:00, l'assistant IA répond à 21:02, la fiche du prospect se remplit critère par critère, un rendez-vous provisoire jeudi à 18:30 est proposé, puis l'agent immobilier le valide.</span></figcaption>
+            <button class="sim-pause" type="button" aria-pressed="false" aria-controls="sim">Mettre en pause</button>
+          </div>
         </figure>
+        <script>
+          // Simulation du haut de page : boucle d'environ 15 s. Sans animation (préférence du visiteur), l'état final reste affiché.
+          (function () {
+            var sim = document.getElementById("sim"), bouton = document.querySelector(".sim-pause");
+            if (!document.documentElement.classList.contains("anim")) { bouton.hidden = true; return; }
+            var tous = function (s) { return Array.prototype.slice.call(sim.querySelectorAll(s)); };
+            var m = tous(".sim-m"), crit = tous(".sim-crit li"), rdv = sim.querySelector(".sim-rdv");
+            var arc = sim.querySelector(".arc"), chiffre = sim.querySelector(".sim-jauge text");
+            function score(v) { arc.style.strokeDashoffset = 100 - v; chiffre.textContent = v; }
+            function remise() {
+              sim.classList.add("sans-transition");
+              m.forEach(function (e) { e.classList.remove("on", "ecrit"); });
+              crit.forEach(function (e) { e.classList.remove("on"); });
+              rdv.classList.remove("on", "confirme", "appui"); score(0);
+              void sim.offsetWidth; sim.classList.remove("sans-transition", "fondu");
+            }
+            var plan = [[0, remise],
+              [600, function () { m[0].classList.add("on"); }],
+              [1500, function () { m[1].classList.add("on", "ecrit"); }],
+              [2900, function () { m[1].classList.remove("ecrit"); }],
+              [4100, function () { m[2].classList.add("on"); }]];
+            crit.forEach(function (c, i) { plan.push([5100 + i * 600, function () { c.classList.add("on"); score(14 * (i + 1)); }]); });
+            plan.push([8700, function () { rdv.classList.add("on"); score(100); }],
+              [10600, function () { rdv.classList.add("appui"); }],
+              [10900, function () { rdv.classList.remove("appui"); rdv.classList.add("confirme"); }],
+              [14200, function () { sim.classList.add("fondu"); }]);
+            var i = 1, minuterie = null, reste = plan[1][0], debut = 0, pause = false, cache = false;
+            function lancer(d) { reste = d; debut = performance.now(); minuterie = setTimeout(etape, d); }
+            function etape() {
+              minuterie = null; plan[i][1]();
+              var t = plan[i][0]; i = (i + 1) % plan.length;
+              lancer(i ? plan[i][0] - t : 700);
+            }
+            function arreter() { if (minuterie) { clearTimeout(minuterie); minuterie = null; reste = Math.max(0, reste - (performance.now() - debut)); } }
+            function reprendre() { if (!minuterie && !pause && !cache && !document.hidden) lancer(reste); }
+            remise();
+            bouton.addEventListener("click", function () {
+              pause = !pause; sim.classList.toggle("pause", pause);
+              bouton.textContent = pause ? "Reprendre l'animation" : "Mettre en pause";
+              bouton.setAttribute("aria-pressed", String(pause));
+              if (pause) arreter(); else reprendre();
+            });
+            document.addEventListener("visibilitychange", function () { if (document.hidden) arreter(); else reprendre(); });
+            new IntersectionObserver(function (e) { cache = !e[0].isIntersecting; if (cache) arreter(); else reprendre(); }).observe(sim);
+          })();
+        </script>
       </div>
     </section>
 
@@ -115,18 +176,18 @@
           <div class="frise sans">
             <h3 class="frise-titre">Sans Agent de Nuit</h3>
             <ol>
-              <li style="--x:0%"><time>21:00</time><span>Le prospect écrit</span></li>
-              <li class="attente" style="--x:46%" aria-hidden="true"><span>Agence fermée, la demande attend</span></li>
-              <li class="fin" style="--x:100%"><time>10:00</time><span>Première réponse, le lendemain</span></li>
+              <li style="--x:0%;--d:0s;--t:1.6s"><time>21:00</time><span>Le prospect écrit</span></li>
+              <li class="attente" style="--x:46%;--d:1.6s;--t:2.6s" aria-hidden="true"><span>Agence fermée, la demande attend</span></li>
+              <li class="fin" style="--x:100%;--d:4.2s"><time>10:00</time><span>Première réponse, le lendemain</span></li>
             </ol>
           </div>
           <div class="frise avec">
             <h3 class="frise-titre">Avec Agent de Nuit</h3>
             <ol>
-              <li style="--x:0%"><time>21:00</time><span>Le prospect écrit</span></li>
-              <li style="--x:19%"><time>21:02</time><span>L'assistant répond et qualifie</span></li>
-              <li style="--x:38%"><span class="sans-heure">Ensuite</span><span>Rendez-vous posé en provisoire</span></li>
-              <li class="fin" style="--x:92%"><time>9:00</time><span>L'agent immobilier valide</span></li>
+              <li style="--x:0%;--d:0s;--t:.7s"><time>21:00</time><span>Le prospect écrit</span></li>
+              <li style="--x:19%;--d:.7s;--t:.7s"><time>21:02</time><span>L'assistant répond et qualifie</span></li>
+              <li style="--x:38%;--d:1.4s;--t:1.2s"><span class="sans-heure">Ensuite</span><span>Rendez-vous posé en provisoire</span></li>
+              <li class="fin" style="--x:92%;--d:2.6s"><time>9:00</time><span>L'agent immobilier valide</span></li>
             </ol>
           </div>
         </div>
@@ -141,6 +202,7 @@
           <span class="surtitre">Comment ça marche</span>
           <h2 id="titre-marche">Du contact portail au rendez-vous</h2>
         </div>
+        <div class="marche">
         <ol class="etapes">
           <li class="etape">
             <span class="numero" aria-hidden="true">1</span>
@@ -161,6 +223,12 @@
             <figure class="capture-img"><img src="assets/captures/3-validation.webp" srcset="assets/captures/3-validation.webp 1x, assets/captures/3-validation@2x.webp 2x" width="300" height="429" loading="lazy" decoding="async" alt="Exemple de démonstration : rendez-vous provisoire sur iPhone, avec les boutons Valider le rendez-vous et Proposer un autre créneau."></figure>
           </li>
         </ol>
+        <div class="marche-tel" aria-hidden="true">
+          <img class="on" src="assets/captures/1-annonce.webp" srcset="assets/captures/1-annonce.webp 1x, assets/captures/1-annonce@2x.webp 2x" width="300" height="641" loading="lazy" decoding="async" alt="">
+          <img src="assets/captures/2-reponse.webp" srcset="assets/captures/2-reponse.webp 1x, assets/captures/2-reponse@2x.webp 2x" width="300" height="641" loading="lazy" decoding="async" alt="">
+          <img src="assets/captures/3-validation.webp" srcset="assets/captures/3-validation.webp 1x, assets/captures/3-validation@2x.webp 2x" width="300" height="429" loading="lazy" decoding="async" alt="">
+        </div>
+        </div>
         <p class="note">Le prospect reçoit ensuite la confirmation, puis un rappel la veille. Si le bien est loué, l'assistant propose vos autres biens.</p>
       </div>
     </section>
@@ -173,6 +241,7 @@
           <h2 id="titre-demo">Le parcours complet, sur une agence fictive</h2>
           <p>Côté prospect et côté agent immobilier, sur téléphone et sur ordinateur, en location et en vente.</p>
           <div class="boutons"><a class="bouton contour" href="demo/">Ouvrir la démo</a></div>
+          <p><a class="lien-fleche" href="assets/video/demo-horizontale.mp4">Voir la vidéo de démonstration (1 min, sans son) →</a></p>
         </div>
         <figure class="capture-img large"><img src="assets/captures/4-apercu-demo.webp" srcset="assets/captures/4-apercu-demo.webp 1200w, assets/captures/4-apercu-demo@2x.webp 2400w" sizes="(min-width: 900px) 610px, calc(100vw - 48px)" width="1200" height="750" loading="lazy" decoding="async" alt="Aperçu de la page de démonstration d'Agent de Nuit, avec une agence fictive."></figure>
       </div>
@@ -191,7 +260,7 @@
             <span class="etiquette">Exemple</span>
             <h3>Le prospect veut négocier le loyer</h3>
             <p class="bulle prospect"><span class="qui">Prospect</span>Le loyer est à 1&nbsp;150&nbsp;€ charges comprises. Vous pouvez descendre à 1&nbsp;050&nbsp;€&nbsp;?</p>
-            <p class="bulle assistant"><span class="qui">Assistant IA</span>Je suis l'assistant IA de l'Agence Exemple et je ne peux pas discuter du loyer. Je transmets votre question à Camille, votre agente immobilière. En attendant, je peux vous proposer un rendez-vous.</p>
+            <p class="bulle assistant"><span class="qui">Assistant IA</span><span class="corps">Je suis l'assistant IA de l'Agence Exemple et je ne peux pas discuter du loyer. Je transmets votre question à Camille, votre agente immobilière. En attendant, je peux vous proposer un rendez-vous.</span></p>
             <p class="regle"><strong>Règle :</strong> l'assistant ne négocie pas.</p>
           </article>
           <article aria-label="Exemple : le prospect demande si sa nationalité pose problème">
@@ -199,21 +268,21 @@
             <h3>Le prospect demande si sa nationalité pose problème</h3>
             <p class="bulle prospect"><span class="qui">Prospect</span>Je suis de nationalité étrangère, est-ce un problème pour louer&nbsp;?</p>
             <!-- JURISTE : formulation de la réponse -->
-            <p class="bulle assistant"><span class="qui">Assistant IA</span>Non. La loi interdit de refuser une location en raison de la nationalité. Pour continuer, à partir de quelle date souhaitez-vous emménager&nbsp;?</p>
+            <p class="bulle assistant"><span class="qui">Assistant IA</span><span class="corps">Non. La loi interdit de refuser une location en raison de la nationalité. Pour continuer, à partir de quelle date souhaitez-vous emménager&nbsp;?</span></p>
             <p class="regle"><strong>Règle :</strong> aucun critère discriminatoire.</p>
           </article>
           <article aria-label="Exemple : le prospect demande l'adresse exacte">
             <span class="etiquette">Exemple</span>
             <h3>Le prospect demande l'adresse exacte</h3>
             <p class="bulle prospect"><span class="qui">Prospect</span>C'est à quelle adresse exactement&nbsp;?</p>
-            <p class="bulle assistant"><span class="qui">Assistant IA</span>Le bien se trouve à Colombes, quartier de la Gare, comme indiqué dans l'annonce. Camille vous communique l'adresse exacte avec la confirmation du rendez-vous.</p>
+            <p class="bulle assistant"><span class="qui">Assistant IA</span><span class="corps">Le bien se trouve à Colombes, quartier de la Gare, comme indiqué dans l'annonce. Camille vous communique l'adresse exacte avec la confirmation du rendez-vous.</span></p>
             <p class="regle"><strong>Règle :</strong> l'assistant ne donne que ce qui figure dans l'annonce.</p>
           </article>
           <article aria-label="Exemple : le prospect veut parler à quelqu'un">
             <span class="etiquette">Exemple</span>
             <h3>Le prospect veut parler à quelqu'un</h3>
             <p class="bulle prospect"><span class="qui">Prospect</span>Je préfère parler à quelqu'un.</p>
-            <p class="bulle assistant"><span class="qui">Assistant IA</span>Bien sûr. Je préviens Camille, votre agente immobilière. Elle vous recontacte dès que possible, aux heures d'ouverture de l'agence.</p>
+            <p class="bulle assistant"><span class="qui">Assistant IA</span><span class="corps">Bien sûr. Je préviens Camille, votre agente immobilière. Elle vous recontacte dès que possible, aux heures d'ouverture de l'agence.</span></p>
             <p class="regle"><strong>Règle :</strong> l'assistant passe la main et ne s'engage jamais sur un horaire.</p>
           </article>
         </div>
@@ -410,20 +479,43 @@
     </div>
   </footer>
   <script>
-    // Vidéo : lecture automatique sans son, bouton pause, pas de lecture automatique si l'utilisateur limite les animations.
-    (function () {
-      var v = document.getElementById("video-demo"), b = document.querySelector(".video-pause");
-      function maj() { var arret = v.paused; b.textContent = arret ? "Lire la vidéo" : "Mettre en pause"; b.setAttribute("aria-pressed", String(arret)); }
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.pause(); }
-      b.addEventListener("click", function () { if (v.paused) { v.play(); } else { v.pause(); } });
-      v.addEventListener("play", maj); v.addEventListener("pause", maj); maj();
-    })();
     // En-tête réduit dès que la page défile.
     (function () {
       var e = document.querySelector(".entete"), etat = false;
       function maj() { var r = window.scrollY > 24; if (r !== etat) { etat = r; e.classList.toggle("reduit", r); } }
       window.addEventListener("scroll", maj, { passive: true }); maj();
     })();
+    // Animations au défilement : une seule fois chacune, et seulement si le visiteur ne limite pas les animations.
+    if (document.documentElement.classList.contains("anim")) {
+      var unique = function (cible, seuil, action) {
+        var o = new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.isIntersecting) { action(x.target); o.unobserve(x.target); } }); }, { threshold: seuil });
+        cible.forEach(function (c) { o.observe(c); });
+      };
+      // Frise sans / avec
+      unique(document.querySelectorAll(".frises"), 0.35, function (f) { f.classList.add("joue"); });
+      // Cas difficiles : la réponse de l'assistant s'écrit en moins de 1,5 s
+      unique(document.querySelectorAll(".cas article"), 0.45, function (a) {
+        var corps = a.querySelector(".bulle.assistant .corps"), texte = corps.textContent, frappe = document.createElement("span");
+        frappe.className = "frappe"; frappe.setAttribute("aria-hidden", "true"); corps.appendChild(frappe);
+        var duree = Math.min(1300, texte.length * 7), t0 = performance.now();
+        (function pas(t) {
+          var n = Math.min(texte.length, Math.round(texte.length * (t - t0) / duree));
+          frappe.textContent = texte.slice(0, n);
+          if (n < texte.length) requestAnimationFrame(pas); else { frappe.remove(); corps.parentNode.classList.add("fini"); }
+        })(t0);
+      });
+      // Comment ça marche : l'écran du téléphone suit l'étape lue (ordinateur, 1024 px et plus)
+      var etapes = document.querySelectorAll(".marche .etape"), ecrans = document.querySelectorAll(".marche-tel img");
+      var obsEtape = new IntersectionObserver(function (es) {
+        es.forEach(function (x) {
+          if (!x.isIntersecting) return;
+          var n = Array.prototype.indexOf.call(etapes, x.target);
+          etapes.forEach(function (e, k) { e.classList.toggle("actif", k === n); });
+          ecrans.forEach(function (e, k) { e.classList.toggle("on", k === n); });
+        });
+      }, { rootMargin: "-45% 0px -45% 0px" });
+      etapes.forEach(function (e) { obsEtape.observe(e); });
+    }
     // Apparition douce des sections au défilement.
     if (document.documentElement.classList.contains("anim")) {
       var obs = new IntersectionObserver(function (entrees) {

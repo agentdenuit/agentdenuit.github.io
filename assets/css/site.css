@@ -134,14 +134,73 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .reperes { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; color: var(--brume); font-size: .92rem; }
 .reperes li { display: inline-flex; align-items: center; gap: 8px; }
 .reperes .ico { width: 18px; height: 18px; color: var(--lune); }
-.video { display: grid; gap: 10px; min-width: 0; }
-.video .ecran { width: 100%; max-width: 100%; }
-.video .legende { font-size: .85rem; color: var(--brume); }
-.lecteur { position: relative; border-radius: var(--rayon); overflow: hidden; background: var(--nuit-2); border: 1px solid var(--nuit-ligne); aspect-ratio: 16 / 9; }
-.lecteur video { width: 100%; height: 100%; object-fit: cover; }
-.video-pause { position: absolute; right: 10px; top: 10px; min-height: 36px; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--nuit-ligne);
-  background: rgba(14, 23, 41, .85); color: var(--lune); font: 600 .8rem/1 var(--sans); cursor: pointer; }
-.video-pause:hover { background: var(--nuit); }
+/* ---------- Simulation du haut de page ---------- */
+.sim-cadre { margin: 0; display: grid; gap: 10px; min-width: 0; }
+.sim { position: relative; display: grid; grid-template-columns: 1fr 1.08fr; gap: 12px; align-items: stretch;
+  padding: 44px 14px 14px; background: var(--nuit-2); border: 1px solid var(--nuit-ligne); border-radius: 14px;
+  color: var(--encre); font-size: .74rem; line-height: 1.38; user-select: none; }
+.sim-badge { position: absolute; top: 13px; left: 14px; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--lune); border: 1px solid var(--nuit-ligne); background: var(--nuit); border-radius: 999px; padding: 2px 10px; }
+.sim-tel { background: var(--jour); border: 5px solid #05080F; border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.sim-tel-tete { display: flex; gap: 8px; align-items: center; padding: 9px 10px; background: var(--blanc); border-bottom: 1px solid var(--ligne); }
+.sim-tel-tete b, .sim-fiche-tete b { display: block; font-size: .76rem; }
+.sim small { color: var(--ardoise); font-size: .66rem; }
+.sim-av { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; flex: none; background: var(--nuit); color: var(--lune); font-weight: 700; font-size: .68rem; }
+.sim-av.clair { background: var(--lune); color: var(--nuit); width: 32px; height: 32px; }
+.sim-fil { padding: 10px 9px 12px; display: flex; flex-direction: column; gap: 8px; }
+.sim-m { position: relative; max-width: 90%; padding: 7px 9px; border-radius: 12px; opacity: 0; transform: translateY(6px); transition: opacity .35s ease, transform .35s ease; }
+.sim-m.on { opacity: 1; transform: none; }
+.sim-m p { margin: 0; }
+.sim-m time { display: block; text-align: right; font-size: .6rem; opacity: .7; margin-top: 2px; }
+.sim-m.pros { align-self: flex-end; background: var(--ligne); border-bottom-right-radius: 4px; }
+.sim-m.ia { align-self: flex-start; background: var(--nuit); color: var(--lune); border-bottom-left-radius: 4px; }
+.sim-ecrit { display: none; position: absolute; top: 0; left: 0; padding: 6px 12px; border-radius: 12px; border-bottom-left-radius: 4px; background: var(--nuit); color: var(--brume); font-style: italic; }
+.sim-ecrit i { font-style: normal; animation: sim-point 1s infinite; }
+.sim-ecrit i:nth-child(2) { animation-delay: .2s; } .sim-ecrit i:nth-child(3) { animation-delay: .4s; }
+@keyframes sim-point { 0%, 60%, 100% { opacity: .25; } 30% { opacity: 1; } }
+.sim-m.ia.ecrit { background: transparent; }
+.sim-m.ia.ecrit p, .sim-m.ia.ecrit time { visibility: hidden; }
+.sim-m.ia.ecrit .sim-ecrit { display: block; }
+.sim-fiche { background: var(--blanc); border-radius: 12px; padding: 12px; display: grid; grid-template-rows: auto auto 1fr; gap: 10px; min-width: 0; }
+.sim-fiche-tete { display: flex; align-items: center; gap: 8px; }
+.sim-fiche-tete > div { flex: 1; min-width: 0; }
+.sim-jauge { width: 42px; height: 42px; flex: none; }
+.sim-jauge circle { fill: none; stroke: var(--ligne); stroke-width: 4; }
+.sim-jauge .arc { stroke: var(--nuit); stroke-dasharray: 100; stroke-linecap: butt; transform: rotate(-90deg); transform-origin: 20px 20px; transition: stroke-dashoffset .5s ease; }
+.sim-jauge text { font: 700 10.5px var(--sans); fill: var(--encre); font-variant-numeric: tabular-nums; }
+.sim-crit { list-style: none; margin: 0; padding: 0; }
+.sim-crit li { display: grid; grid-template-columns: 13px 1fr auto; gap: 7px; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--ligne); }
+.sim-crit span { color: var(--ardoise); }
+.sim-crit b { opacity: 0; transition: opacity .3s ease; white-space: nowrap; }
+.sim-crit li.on b { opacity: 1; }
+.coche { position: relative; width: 13px; height: 13px; border-radius: 50%; border: 1.5px dashed var(--brume); transition: background-color .3s ease, border-color .3s ease; }
+.sim-crit li.on .coche { background: var(--nuit); border: 1.5px solid var(--nuit); }
+.sim-crit li.on .coche::after { content: ""; position: absolute; left: 3.5px; top: 1.5px; width: 3px; height: 6px; border: solid var(--blanc); border-width: 0 1.6px 1.6px 0; transform: rotate(45deg); }
+.sim-rdv { align-self: end; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 10px;
+  border: 1.5px dashed #E39A6B; background: #FDF1E8; opacity: 0; transform: translateY(6px);
+  transition: opacity .4s ease, transform .4s ease, background-color .3s ease, border-color .3s ease; }
+.sim-rdv.on { opacity: 1; transform: none; }
+.sim-rdv small { display: block; font-weight: 700; color: #9A3D12; white-space: nowrap; }
+.sim-rdv b { font-size: .82rem; }
+.sim-rdv .c { display: none; }
+.sim-rdv.confirme { border-style: solid; border-color: #9BD3AE; background: #E8F5EC; }
+.sim-rdv.confirme small { color: #1E6B3F; }
+.sim-rdv.confirme .p { display: none; }
+.sim-rdv.confirme .c { display: inline; }
+.sim-valider { flex: none; min-width: 84px; text-align: center; padding: 6px 10px; border-radius: 8px; background: var(--nuit); color: var(--blanc); font-weight: 700; transition: transform .15s ease, background-color .3s ease; }
+.sim-rdv.appui .sim-valider { transform: scale(.93); }
+.sim-rdv.confirme .sim-valider { background: #1E7A47; }
+.sim .sim-tel, .sim .sim-fiche { transition: opacity .5s ease; }
+.sim.fondu .sim-tel, .sim.fondu .sim-fiche { opacity: 0; }
+.sim.sans-transition, .sim.sans-transition * { transition: none !important; }
+.sim.pause * { animation-play-state: paused !important; }
+.sim-pied { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; }
+.sim-pied .legende { font-size: .85rem; color: var(--brume); }
+.sim-pause { flex: none; min-height: 36px; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--nuit-ligne); background: var(--nuit-2); color: var(--lune); font: 600 .8rem/1 var(--sans); cursor: pointer; }
+.sim-pause:hover { background: var(--nuit); }
+@media (max-width: 520px) {
+  .sim { grid-template-columns: 1fr; padding-top: 42px; }
+}
 
 /* ---------- Le problème : frise ---------- */
 .frises { display: grid; gap: 20px; }
@@ -346,3 +405,40 @@ details.depliable ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; 
 .anim .revele { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
 .anim .revele.visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .anim .revele { opacity: 1; transform: none; transition: none; } }
+
+/* ---------- Frise : animation au défilement (une fois) ---------- */
+.anim .frise li { opacity: 0; transform: translateY(6px); }
+.anim .frises.joue .frise li { animation: frise-apparait .45s ease forwards; animation-delay: var(--d, 0s); }
+@keyframes frise-apparait { to { opacity: 1; transform: none; } }
+.anim .frise li:not(:last-child)::after { clip-path: inset(0 0 100% 0); }
+.anim .frises.joue .frise li:not(:last-child)::after { animation: frise-trait var(--t, .7s) linear forwards; animation-delay: var(--d, 0s); }
+@keyframes frise-trait { to { clip-path: inset(0 0 0 0); } }
+@media (min-width: 820px) {
+  .anim .frise ol::before { clip-path: inset(0 100% 0 0); }
+  .anim .frises.joue .frise.sans ol::before { animation: frise-sans 4.2s linear forwards; }
+  .anim .frises.joue .frise.avec ol::before { animation: frise-avec 2.8s ease-out forwards; }
+}
+@keyframes frise-sans { to { clip-path: inset(0 0 0 0); } }
+@keyframes frise-avec {
+  0% { clip-path: inset(0 100% 0 0); } 22% { clip-path: inset(0 81% 0 0); } 27% { clip-path: inset(0 81% 0 0); }
+  47% { clip-path: inset(0 62% 0 0); } 55% { clip-path: inset(0 62% 0 0); } 92% { clip-path: inset(0 8% 0 0); } 100% { clip-path: inset(0 0 0 0); }
+}
+
+/* ---------- Comment ça marche : téléphone fixe à droite (1024 px et plus) ---------- */
+.marche-tel { display: none; }
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .marche { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 72px; align-items: start; }
+  .marche .etapes { grid-template-columns: 1fr; gap: 0; }
+  .marche .etape { min-height: 58vh; align-content: center; max-width: 34rem; padding-block: 24px; }
+  .marche .etape .capture-img { display: none; }
+  .marche .etape .numero { transition: color .3s ease; }
+  .marche .etape.actif .numero { color: var(--encre); }
+  .marche-tel { display: block; position: sticky; top: max(96px, calc(50vh - 300px)); height: 600px; }
+  .marche-tel img { position: absolute; top: 0; left: 50%; width: 280px; height: auto; transform: translateX(-50%); opacity: 0; transition: opacity .45s ease; }
+  .marche-tel img.on { opacity: 1; }
+}
+
+/* ---------- Cas difficiles : effet de frappe (une fois) ---------- */
+.bulle .corps { display: block; position: relative; }
+.anim .cas .bulle.assistant:not(.fini) .corps { color: transparent; }
+.frappe { position: absolute; inset: 0; color: var(--lune); pointer-events: none; }
