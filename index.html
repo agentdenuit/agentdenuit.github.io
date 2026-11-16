@@ -25,18 +25,45 @@
   <link rel="preload" href="assets/fonts/newsreader-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/public-sans-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/site.css">
+  <script>
+    // Apparition douce des sections : seulement si le navigateur la gère et si l'utilisateur ne limite pas les animations.
+    if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("anim");
+  </script>
 </head>
-<body>
+<body class="accueil">
   <a class="lien-evitement" href="#contenu">Aller au contenu</a>
 
-  <!-- 1. En-tête -->
+  <!-- Icônes (dessinées pour le site, trait de 1,8) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-lieu" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+      <symbol id="i-agenda" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+      <symbol id="i-message" viewBox="0 0 24 24"><path d="M4 5.5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-4.5 3.5v-3.5H4a1 1 0 0 1-1-1v-10a1 1 0 0 1 1-1z"/><path d="M7.5 10h9M7.5 13.5h6"/></symbol>
+      <symbol id="i-ia" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></symbol>
+      <symbol id="i-oeil" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-curseur" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="10" rx="5"/><circle cx="16.5" cy="12" r="2.6"/></symbol>
+      <symbol id="i-main" viewBox="0 0 24 24"><path d="M8 12V5.5a1.5 1.5 0 0 1 3 0V11M11 10.5V4a1.5 1.5 0 0 1 3 0v6.5M14 10.5V5.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-.5a6 6 0 0 1-4.8-2.4L3.4 15.6a1.6 1.6 0 0 1 2.4-2.1L8 15.5"/></symbol>
+      <symbol id="i-arret" viewBox="0 0 24 24"><path d="M12 3v8.5"/><path d="M7 5.8a8 8 0 1 0 10 0"/></symbol>
+      <symbol id="i-balance" viewBox="0 0 24 24"><path d="M12 3.5v17M7 20.5h10M4.5 7h15M12 5.5L12 7"/><path d="M4.5 7L2 13a3 3 0 0 0 5 0L4.5 7zM19.5 7L17 13a3 3 0 0 0 5 0L19.5 7z"/></symbol>
+      <symbol id="i-document" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M3.5 3.5l17 17"/></symbol>
+      <symbol id="i-bouclier" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></symbol>
+      <symbol id="i-boite" viewBox="0 0 24 24"><path d="M3.5 13.5l2.6-8a1.5 1.5 0 0 1 1.4-1h9a1.5 1.5 0 0 1 1.4 1l2.6 8V19a1.5 1.5 0 0 1-1.5 1.5h-14A1.5 1.5 0 0 1 3.5 19z"/><path d="M3.5 13.5h5l1.5 2.5h4l1.5-2.5h5"/></symbol>
+      <symbol id="i-couches" viewBox="0 0 24 24"><path d="M12 3.5l9 4.5-9 4.5L3 8z"/><path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"/></symbol>
+      <symbol id="i-serveur" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="7" rx="1.5"/><rect x="3.5" y="13" width="17" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></symbol>
+      <symbol id="i-cerveau" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/></symbol>
+      <symbol id="i-valide" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8 12.2l2.8 2.8L16.2 9.5"/></symbol>
+      <symbol id="i-cadenas" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3M12 14.5v2.5"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- En-tête : se réduit au défilement -->
   <header class="entete">
     <div class="conteneur">
       <a class="logo" href="./"><img src="assets/logo/logo-une-ligne-sombre.svg" alt="Agent de Nuit, accueil" width="142" height="30"></a>
       <nav class="navigation" aria-label="Navigation principale">
         <a href="#comment-ca-marche">Comment ça marche</a>
         <a href="#demo">Démo</a>
-        <a href="#conformite">Conformité</a>
+        <a href="#conformite">Contrôle</a>
         <a href="#faq">FAQ</a>
       </nav>
       <a class="bouton petit" href="mailto:quentin.pro.dpls@gmail.com?subject=Demande%20de%20d%C3%A9mo%20Agent%20de%20Nuit&amp;body=Bonjour%20Quentin%2C%0A%0AJe%20souhaite%20voir%20une%20d%C3%A9monstration%20d%27Agent%20de%20Nuit.%0A%0AAgence%20%3A%0ANombre%20d%27agences%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0ACr%C3%A9neaux%20qui%20me%20conviennent%20%3A%0A%0ACordialement%2C%0A">Demander une démo</a>
@@ -45,17 +72,23 @@
 
   <main id="contenu">
 
-    <!-- 2. Promesse -->
+    <!-- 1. Promesse -->
     <section class="promesse" aria-labelledby="titre-promesse">
       <div class="conteneur">
         <div class="promesse-texte">
           <span class="badge">Nouveau · En phase de lancement</span>
           <h1 id="titre-promesse">Votre agence répond à chaque contact portail en moins de 2&nbsp;minutes, même quand elle est fermée.</h1>
-          <p class="sous-titre">Agent de Nuit répond aux prospects de SeLoger, Bien'ici et des autres portails, les qualifie et leur propose un rendez-vous. Votre agent immobilier le valide d'un geste dans son agenda.</p>
+          <p class="sous-titre">Agent de Nuit répond aux prospects de SeLoger, Bien'ici et des autres portails, les qualifie et leur propose un rendez-vous. Votre agent immobilier le valide d'un geste.</p>
           <div class="boutons">
             <a class="bouton" href="mailto:quentin.pro.dpls@gmail.com?subject=Demande%20de%20d%C3%A9mo%20Agent%20de%20Nuit&amp;body=Bonjour%20Quentin%2C%0A%0AJe%20souhaite%20voir%20une%20d%C3%A9monstration%20d%27Agent%20de%20Nuit.%0A%0AAgence%20%3A%0ANombre%20d%27agences%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0ACr%C3%A9neaux%20qui%20me%20conviennent%20%3A%0A%0ACordialement%2C%0A">Demander une démo</a>
             <a class="bouton secondaire" href="demo/">Voir la démo</a>
           </div>
+          <ul class="reperes" aria-label="En bref">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-lieu"/></svg>Hébergé en France</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-agenda"/></svg>Google Agenda et Outlook</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-message"/></svg>Email et WhatsApp</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-ia"/></svg>Le prospect sait qu'il parle à une IA</li>
+          </ul>
         </div>
         <figure class="video" style="margin:0">
           <div class="ecran lecteur">
@@ -70,23 +103,39 @@
       </div>
     </section>
 
-    <!-- 3. Le problème -->
-    <section class="bande blanche" aria-labelledby="titre-probleme">
+    <!-- 2. Le problème : frise -->
+    <section class="bande blanche revele" aria-labelledby="titre-probleme">
       <div class="conteneur">
         <div class="entete-section">
+          <span class="surtitre">Le problème</span>
           <h2 id="titre-probleme">Les contacts du soir attendent le lendemain</h2>
+          <p>Un prospect écrit à 21:00 sur une annonce. Il contacte souvent plusieurs agences.</p>
         </div>
-        <p class="scene">Un prospect écrit à <span class="heure">21&nbsp;h</span> sur une annonce de location. Il contacte aussi deux autres agences.</p>
-        <div class="trois">
-          <div class="moment"><h3>Le soir et le week-end</h3><p>Les contacts portails s'accumulent jusqu'à la réouverture.</p></div>
-          <div class="moment"><h3>Le matin</h3><p>Vos agents immobiliers trient les demandes avant de rappeler qui que ce soit.</p></div>
-          <div class="moment"><h3>Pendant ce temps</h3><p>Le prospect risque de visiter avec l'agence qui a répondu la première.</p></div>
+        <div class="frises">
+          <div class="frise sans">
+            <h3 class="frise-titre">Sans Agent de Nuit</h3>
+            <ol>
+              <li style="--x:0%"><time>21:00</time><span>Le prospect écrit</span></li>
+              <li class="attente" style="--x:46%" aria-hidden="true"><span>Agence fermée, la demande attend</span></li>
+              <li class="fin" style="--x:100%"><time>10:00</time><span>Première réponse, le lendemain</span></li>
+            </ol>
+          </div>
+          <div class="frise avec">
+            <h3 class="frise-titre">Avec Agent de Nuit</h3>
+            <ol>
+              <li style="--x:0%"><time>21:00</time><span>Le prospect écrit</span></li>
+              <li style="--x:19%"><time>21:02</time><span>L'assistant répond et qualifie</span></li>
+              <li style="--x:38%"><span class="sans-heure">Ensuite</span><span>Rendez-vous posé en provisoire</span></li>
+              <li class="fin" style="--x:92%"><time>9:00</time><span>L'agent immobilier valide</span></li>
+            </ol>
+          </div>
         </div>
+        <p class="note">Illustration du fonctionnement prévu.</p>
       </div>
     </section>
 
-    <!-- 4. Comment ça marche -->
-    <section class="bande" id="comment-ca-marche" aria-labelledby="titre-marche">
+    <!-- 3. Comment ça marche -->
+    <section class="bande lune revele" id="comment-ca-marche" aria-labelledby="titre-marche">
       <div class="conteneur">
         <div class="entete-section">
           <span class="surtitre">Comment ça marche</span>
@@ -96,40 +145,41 @@
           <li class="etape">
             <span class="numero" aria-hidden="true">1</span>
             <h3>Le contact arrive</h3>
-            <p>Un prospect écrit sur une annonce, à n'importe quelle heure. L'email du portail est transféré automatiquement à Agent de Nuit.</p>
+            <p>Un prospect écrit sur une annonce, à toute heure. L'email du portail est transféré à Agent de Nuit.</p>
             <figure class="capture-img"><img src="assets/captures/1-annonce.webp" srcset="assets/captures/1-annonce.webp 1x, assets/captures/1-annonce@2x.webp 2x" width="300" height="641" loading="lazy" decoding="async" alt="Exemple de démonstration : annonce d'un T2 à Colombes sur un portail immobilier, avec le bouton Contacter l'agence."></figure>
           </li>
           <li class="etape">
             <span class="numero" aria-hidden="true">2</span>
             <h3>L'assistant répond et qualifie</h3>
-            <p>En moins de 2&nbsp;minutes, il répond par email en tant qu'assistant IA de votre agence, avec un bouton pour continuer sur WhatsApp. Il demande le type de logement, le budget charges comprises, les secteurs, la date d'emménagement et la situation professionnelle. Si le bien est loué, il propose vos autres biens en ligne.</p>
+            <p>Il répond par email en moins de 2&nbsp;minutes, avec un bouton pour continuer sur WhatsApp. Il pose 5 questions courtes : logement, budget, secteurs, date d'emménagement, situation professionnelle.</p>
             <figure class="capture-img"><img src="assets/captures/2-reponse.webp" srcset="assets/captures/2-reponse.webp 1x, assets/captures/2-reponse@2x.webp 2x" width="300" height="641" loading="lazy" decoding="async" alt="Exemple de démonstration : l'assistant IA se présente et pose les questions de qualification."></figure>
           </li>
           <li class="etape">
             <span class="numero" aria-hidden="true">3</span>
             <h3>L'agent immobilier valide</h3>
-            <p>L'assistant propose 2 ou 3 créneaux pour un rendez-vous (visite du bien ou rendez-vous en agence, selon votre organisation), lus dans l'agenda de l'agent immobilier. Le créneau choisi est posé en provisoire, l'agent immobilier le valide d'un geste. Le prospect reçoit la confirmation, puis un rappel la veille.</p>
+            <p>L'assistant propose 2 ou 3 créneaux lus dans l'agenda : visite du bien ou rendez-vous en agence, selon votre organisation. Le créneau choisi est posé en provisoire. L'agent immobilier le valide d'un geste.</p>
             <figure class="capture-img"><img src="assets/captures/3-validation.webp" srcset="assets/captures/3-validation.webp 1x, assets/captures/3-validation@2x.webp 2x" width="300" height="429" loading="lazy" decoding="async" alt="Exemple de démonstration : rendez-vous provisoire sur iPhone, avec les boutons Valider le rendez-vous et Proposer un autre créneau."></figure>
           </li>
         </ol>
+        <p class="note">Le prospect reçoit ensuite la confirmation, puis un rappel la veille. Si le bien est loué, l'assistant propose vos autres biens.</p>
       </div>
     </section>
 
-    <!-- 5. La démonstration -->
-    <section class="bande blanche" id="demo" aria-labelledby="titre-demo">
+    <!-- 4. La démonstration -->
+    <section class="bande blanche revele" id="demo" aria-labelledby="titre-demo">
       <div class="conteneur demo-bloc">
-        <div class="entete-section" style="margin-bottom:0">
+        <div class="entete-section sans-marge">
           <span class="surtitre">Démonstration</span>
           <h2 id="titre-demo">Le parcours complet, sur une agence fictive</h2>
           <p>Côté prospect et côté agent immobilier, sur téléphone et sur ordinateur, en location et en vente.</p>
-          <div class="boutons"><a class="bouton" href="demo/">Ouvrir la démo</a></div>
+          <div class="boutons"><a class="bouton contour" href="demo/">Ouvrir la démo</a></div>
         </div>
         <figure class="capture-img large"><img src="assets/captures/4-apercu-demo.webp" srcset="assets/captures/4-apercu-demo.webp 1200w, assets/captures/4-apercu-demo@2x.webp 2400w" sizes="(min-width: 900px) 610px, calc(100vw - 48px)" width="1200" height="750" loading="lazy" decoding="async" alt="Aperçu de la page de démonstration d'Agent de Nuit, avec une agence fictive."></figure>
       </div>
     </section>
 
-    <!-- 6. Les cas difficiles -->
-    <section class="bande" aria-labelledby="titre-cas">
+    <!-- 5. Les cas difficiles -->
+    <section class="bande lune revele" aria-labelledby="titre-cas">
       <div class="conteneur">
         <div class="entete-section">
           <span class="surtitre">Les cas difficiles</span>
@@ -164,44 +214,36 @@
             <h3>Le prospect veut parler à quelqu'un</h3>
             <p class="bulle prospect"><span class="qui">Prospect</span>Je préfère parler à quelqu'un.</p>
             <p class="bulle assistant"><span class="qui">Assistant IA</span>Bien sûr. Je préviens Camille, votre agente immobilière. Elle vous recontacte dès que possible, aux heures d'ouverture de l'agence.</p>
-            <p class="regle"><strong>Règle :</strong> l'assistant passe la main et ne s'engage jamais sur un horaire au nom de l'agent immobilier.</p>
+            <p class="regle"><strong>Règle :</strong> l'assistant passe la main et ne s'engage jamais sur un horaire.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- 7. Vous gardez la main -->
-    <section class="bande nuit" aria-labelledby="titre-main">
+    <!-- 6. Contrôle et conformité -->
+    <section class="bande nuit revele" id="conformite" aria-labelledby="titre-controle">
       <div class="conteneur">
         <div class="entete-section">
-          <span class="surtitre">Vous gardez la main</span>
-          <h2 id="titre-main">L'assistant propose, l'agent immobilier décide</h2>
+          <span class="surtitre">Contrôle et conformité</span>
+          <h2 id="titre-controle">L'assistant propose, l'agent immobilier décide</h2>
         </div>
-        <ul class="points">
-          <li><h3>Mode supervision au démarrage</h3><p>La première réponse et les questions de qualification partent tout de suite ; vos agents immobiliers valident les autres réponses avant l'envoi.</p></li>
-          <li><h3>Mode automatique quand l'agence le décide</h3><p>Vous choisissez le moment, agence par agence.</p></li>
-          <li><h3>Reprise à tout moment</h3><p>L'agent immobilier reprend une conversation, l'assistant cesse d'y répondre.</p></li>
-          <li><h3>Un bouton pour tout arrêter</h3><p>Les contacts portails arrivent alors chez vous comme avant.</p></li>
+        <h3 class="sous-titre-section">Vous gardez la main</h3>
+        <ul class="cartes quatre">
+          <li class="carte" id="supervision"><svg class="ico" aria-hidden="true"><use href="#i-oeil"/></svg><h4>Mode supervision au démarrage</h4><p>Le premier message et les 5 questions partent seuls. Vos agents immobiliers valident les autres réponses avant l'envoi.</p></li>
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-curseur"/></svg><h4>Automatique, quand vous le décidez</h4><p>Vous choisissez le moment, agence par agence.</p></li>
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-main"/></svg><h4>Reprise à tout moment</h4><p>L'agent immobilier reprend la conversation, l'assistant cesse d'y répondre.</p></li>
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-arret"/></svg><h4>Un bouton pour tout arrêter</h4><p>Les contacts portails arrivent alors chez vous comme avant.</p></li>
         </ul>
-      </div>
-    </section>
-
-    <!-- 8. Conformité -->
-    <section class="bande blanche" id="conformite" aria-labelledby="titre-conformite">
-      <div class="conteneur">
-        <div class="entete-section">
-          <span class="surtitre">Conformité</span>
-          <h2 id="titre-conformite">Les règles qui encadrent chaque échange</h2>
-        </div>
-        <ul class="faits deux">
-          <li><p><strong>Non-discrimination.</strong> <span>Aucune question sur un critère interdit par la loi.</span></p></li>
-          <li><p><strong>Aucun document collecté.</strong> <span>Aucune pièce du dossier locataire n'est demandée.</span></p></li>
-          <li><p><strong>Transparence.</strong> <span>Le prospect sait qu'il échange avec une IA.</span></p></li>
-          <li><p><strong>RGPD.</strong> <span>Accord de sous-traitance fourni sur demande.</span></p></li>
+        <h3 class="sous-titre-section">Les règles de chaque échange</h3>
+        <ul class="cartes quatre">
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-balance"/></svg><h4>Non-discrimination</h4><p>Aucune question sur un critère interdit par la loi.</p></li>
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-document"/></svg><h4>Aucun document collecté</h4><p>Aucune pièce du dossier locataire n'est demandée.</p></li>
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-ia"/></svg><h4>Transparence</h4><p>Le prospect sait qu'il échange avec une IA.</p></li>
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-bouclier"/></svg><h4>RGPD</h4><p>Accord de sous-traitance fourni sur demande.</p></li>
         </ul>
         <p class="note">Votre agence reste responsable de ses pratiques. L'outil applique les règles définies avec vous.</p>
         <details class="depliable">
-          <summary>Le détail</summary>
+          <summary>Le détail juridique</summary>
           <div class="contenu">
             <!-- JURISTE : relire les quatre paragraphes ci-dessous -->
             <p><strong>Non-discrimination.</strong> L'assistant ne pose aucune question sur un critère interdit par la loi du 6 juillet 1989 et par le Code pénal : origine, nationalité, situation de famille, état de santé, et les autres critères listés par la loi. Il qualifie uniquement sur le logement, le budget, les secteurs, la date d'emménagement et la situation professionnelle.</p>
@@ -213,8 +255,8 @@
       </div>
     </section>
 
-    <!-- 9. Ce que voit l'agent immobilier -->
-    <section class="bande" aria-labelledby="titre-appli">
+    <!-- 7. Ce que voit l'agent immobilier -->
+    <section class="bande blanche revele" aria-labelledby="titre-appli">
       <div class="conteneur appli">
         <div>
           <div class="entete-section">
@@ -224,7 +266,7 @@
           <ul class="faits">
             <li><p><strong>La fiche prospect :</strong> <span>coordonnées, critères, niveau de qualification.</span></p></li>
             <li><p><strong>La conversation :</strong> <span>chaque message, avec la possibilité de reprendre la main.</span></p></li>
-            <li><p><strong>Le rendez-vous :</strong> <span>le créneau apparaît en provisoire. Un geste pour le valider.</span></p></li>
+            <li><p><strong>Le rendez-vous :</strong> <span>posé en provisoire, validé d'un geste.</span></p></li>
             <li><p><strong>Le récapitulatif du matin,</strong> <span>envoyé à chaque agent immobilier.</span></p></li>
           </ul>
         </div>
@@ -233,46 +275,88 @@
       </div>
     </section>
 
-    <!-- 10. Pour qui, avec quels outils -->
-    <section class="bande blanche" aria-labelledby="titre-outils">
-      <div class="conteneur deux-colonnes">
+    <!-- 8. Pour qui et mise en place -->
+    <section class="bande lune revele" aria-labelledby="titre-outils">
+      <div class="conteneur">
         <div class="entete-section">
-          <span class="surtitre">Pour qui</span>
+          <span class="surtitre">Pour qui et mise en place</span>
           <h2 id="titre-outils">Pour les agences indépendantes, sans changer d'outils</h2>
-          <p>Agent de Nuit s'adresse aux agences indépendantes d'<span class="nowrap">Île-de-France</span>, de 1 à 10 agences, qui reçoivent beaucoup de contacts portails en location.</p>
+          <p>Pour les agences d'<span class="nowrap">Île-de-France</span>, de 1 à 10 agences, qui reçoivent beaucoup de contacts portails en location.</p>
         </div>
-        <div>
-        <ul class="faits">
-          <li><p><strong>Les contacts portails</strong> <span>sont transférés par email, comme aujourd'hui.</span></p></li>
-          <li><p><strong>Les rendez-vous</strong> <span>arrivent dans l'agenda de vos agents immobiliers. Fonctionne avec Google Agenda et Outlook (Microsoft 365).</span></p></li>
-          <li><p><strong>Les échanges</strong> <span>avec les prospects passent par email et WhatsApp.</span></p></li>
+        <ul class="cartes quatre">
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-boite"/></svg><h3>Contacts portails</h3><p>Transférés par email, comme aujourd'hui.</p></li>
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-agenda"/></svg><h3>Agendas</h3><p>Google Agenda ou Outlook (Microsoft 365).</p></li>
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-message"/></svg><h3>Email et WhatsApp</h3><p>Les deux canaux d'échange avec les prospects.</p></li>
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-couches"/></svg><h3>Logiciel métier</h3><p>Votre logiciel de transaction ne change pas.</p></li>
         </ul>
-        <p class="note">Votre logiciel de transaction et de gestion ne change pas. Agent de Nuit n'y est pas relié.</p>
-        </div>
+        <h3 class="sous-titre-section">La mise en place, en 5 étapes</h3>
+        <ol class="parcours">
+          <li><strong>Appel de cadrage</strong><span>Vos agences et vos outils.</span></li>
+          <li><strong>Configuration</strong><span>Règles de rendez-vous, ton, signature.</span></li>
+          <li><strong>Agendas connectés</strong><span>Pour chaque agent immobilier.</span></li>
+          <li><strong>Démarrage supervisé</strong><span><a href="#supervision">Voir le mode supervision</a>.</span></li>
+          <li><strong>Passage en automatique</strong><span>Quand vous le décidez.</span></li>
+        </ol>
+        <p class="note">Le délai est fixé ensemble lors de l'appel de cadrage.</p>
       </div>
     </section>
 
-    <!-- 11. Mise en place -->
-    <section class="bande" aria-labelledby="titre-mise-en-place">
+    <!-- 9. Sécurité -->
+    <section class="bande blanche revele" aria-labelledby="titre-securite">
       <div class="conteneur">
         <div class="entete-section">
-          <span class="surtitre">Mise en place</span>
-          <h2 id="titre-mise-en-place">Une mise en place faite avec vous</h2>
+          <span class="surtitre">Sécurité et données</span>
+          <h2 id="titre-securite">Vos données et celles de vos prospects</h2>
         </div>
-        <div class="deux-colonnes">
-        <div>
-        <ol class="parcours">
-          <li><p><strong>Appel de cadrage.</strong> <span>Je fais le point avec vous sur vos agences et vos outils.</span></p></li>
-          <li><p><strong>Configuration.</strong> <span>Règles de rendez-vous, ton, signature, ce que l'assistant ne doit jamais dire.</span></p></li>
-          <li><p><strong>Connexion des agendas.</strong> <span>Google Agenda ou Outlook, pour chaque agent immobilier.</span></p></li>
-          <li><p><strong>Mode supervision.</strong> <span>La première réponse et les questions de qualification partent tout de suite ; vos agents immobiliers valident les autres réponses avant l'envoi.</span></p></li>
-          <li><p><strong>Passage en automatique,</strong> <span>quand vous le décidez.</span></p></li>
-        </ol>
-        <p class="note">Le délai est fixé ensemble lors de l'appel de cadrage.</p>
+        <ul class="cartes quatre">
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-serveur"/></svg><h3>Hébergement en France</h3><p>Base de données et application hébergées à Paris.</p></li>
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-cerveau"/></svg><h3>Pas d'entraînement</h3><p>Aucune donnée utilisée pour entraîner l'IA.</p></li>
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-valide"/></svg><h3>L'IA ne décide de rien</h3><p>Elle propose, le code vérifie, l'agent immobilier valide.</p></li>
+          <li class="carte"><svg class="ico" aria-hidden="true"><use href="#i-cadenas"/></svg><h3>Accès protégés</h3><p>Double authentification, journal des accès, sauvegardes quotidiennes.</p></li>
+        </ul>
+        <p class="note"><a class="lien-fleche" href="securite/">Sécurité et données : le détail →</a></p>
+      </div>
+    </section>
+
+    <!-- 10. Agences partenaires et fondateur -->
+    <section class="bande nuit revele" aria-labelledby="titre-partenaires">
+      <div class="conteneur partenaires">
+        <div class="entete-section sans-marge">
+          <span class="surtitre">Agences partenaires du lancement</span>
+          <h2 id="titre-partenaires">Je recherche quelques agences partenaires</h2>
+          <p>Agent de Nuit est en phase de lancement. Je le mets en place avec quelques agences indépendantes d'<span class="nowrap">Île-de-France</span>.</p>
+          <ul class="faits">
+            <li><p>Un outil configuré selon vos règles, votre ton et vos agences.</p></li>
+            <li><p>Le mode supervision inclus pendant tout le démarrage.</p></li>
+            <li><p>Vos retours pris en compte en priorité.</p></li>
+          </ul>
+          <div class="boutons">
+            <a class="bouton" href="mailto:quentin.pro.dpls@gmail.com?subject=Demande%20de%20d%C3%A9mo%20Agent%20de%20Nuit&amp;body=Bonjour%20Quentin%2C%0A%0AJe%20souhaite%20voir%20une%20d%C3%A9monstration%20d%27Agent%20de%20Nuit.%0A%0AAgence%20%3A%0ANombre%20d%27agences%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0ACr%C3%A9neaux%20qui%20me%20conviennent%20%3A%0A%0ACordialement%2C%0A">Demander une démo</a>
+            <a class="bouton secondaire" href="mailto:quentin.pro.dpls@gmail.com?subject=Demande%20d%27appel%20de%2015%20minutes%20%3A%20Agent%20de%20Nuit&amp;body=Bonjour%20Quentin%2C%0A%0AJe%20souhaite%20%C3%A9changer%2015%20minutes%20au%20sujet%20d%27Agent%20de%20Nuit.%0A%0AAgence%20%3A%0ANombre%20d%27agences%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0ACr%C3%A9neaux%20qui%20me%20conviennent%20%3A%0A%0ACordialement%2C%0A">Demander un appel de 15 minutes</a>
+          </div>
         </div>
-        <details class="depliable fournir">
-          <summary>Ce que votre agence fournit</summary>
-          <div class="contenu">
+        <aside class="fondateur" aria-labelledby="titre-moi">
+          <span class="initiales" aria-hidden="true">QD</span>
+          <div>
+            <h3 id="titre-moi">Quentin Duplessis, fondateur</h3>
+            <p>J'ai travaillé comme maître d'hôtel dans des établissements parisiens de prestige, où un client qui attend est un client perdu. Agent de Nuit applique la même idée : répondre vite, répondre juste, passer la main au bon moment. Vous avez un interlocuteur unique, du cadrage au suivi.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 11. FAQ -->
+    <section class="bande lune revele" id="faq" aria-labelledby="titre-faq">
+      <div class="conteneur">
+        <div class="entete-section">
+          <span class="surtitre">Questions fréquentes</span>
+          <h2 id="titre-faq">Vos questions</h2>
+        </div>
+        <div class="faq">
+          <details><summary>Le prospect sait-il qu'il parle à une IA&nbsp;?</summary><p>Oui. L'assistant se présente comme l'assistant IA de votre agence dès le premier message.</p></details>
+          <details><summary>Que se passe-t-il si l'IA ne sait pas répondre&nbsp;?</summary><p>Elle le dit au prospect et passe la main à l'agent immobilier. Elle n'invente aucune réponse.</p></details>
+          <details><summary>Et si l'IA se trompe&nbsp;?</summary><p>L'assistant suit des règles strictes et passe la main dès qu'il a un doute. Les rendez-vous restent provisoires tant que l'agent immobilier ne les a pas validés. Au démarrage, le <a href="#supervision">mode supervision</a> ajoute une validation avant l'envoi.</p></details>
+          <details><summary>De quoi avez-vous besoin pour démarrer&nbsp;?</summary>
             <ul>
               <li>Un accès administrateur Google Workspace ou Microsoft 365, le temps de connecter les agendas.</li>
               <li>La liste de vos agences et de vos agents immobiliers.</li>
@@ -283,94 +367,26 @@
               <li>L'accès à la configuration de votre nom de domaine, pour l'envoi des emails.</li>
               <li>Votre ton, votre signature et ce que l'assistant ne doit jamais dire.</li>
             </ul>
-          </div>
-        </details>
+          </details>
+          <details><summary>Que se passe-t-il si vous êtes indisponible&nbsp;?</summary><p>Le code est documenté et les procédures d'incident sont écrites dès la mise en place. Si l'assistant s'arrête, il se coupe proprement : les contacts portails arrivent chez vous comme avant.</p></details>
+          <details><summary>Faut-il changer de logiciel&nbsp;?</summary><p>Non. Agent de Nuit travaille avec vos emails et vos agendas Google ou Outlook. Votre logiciel métier reste en place.</p></details>
+          <details><summary>Où sont stockées les données&nbsp;?</summary><p>La base de données et l'application sont hébergées à Paris. Les services techniques utilisés sont listés sur la page <a href="securite/">Sécurité et données</a>.</p></details>
+          <details><summary>Quand pourrai-je l'utiliser&nbsp;?</summary><p>Le délai est fixé lors de l'appel de cadrage, selon le nombre d'agences et vos outils. Il comprend une période en mode supervision.</p></details>
         </div>
       </div>
     </section>
 
-    <!-- 12. Sécurité et données -->
-    <section class="bande blanche" aria-labelledby="titre-securite">
-      <div class="conteneur">
-        <div class="entete-section">
-          <span class="surtitre">Sécurité et données</span>
-          <h2 id="titre-securite">Vos données et celles de vos prospects</h2>
-        </div>
-        <ul class="faits deux">
-          <li><p><strong>Base de données et application hébergées en France (Paris).</strong></p></li>
-          <li><p><strong>Aucune donnée utilisée pour entraîner l'IA.</strong></p></li>
-          <li><p><strong>L'IA ne décide de rien :</strong> <span>elle propose, le code vérifie, l'agent immobilier valide.</span></p></li>
-          <li><p><strong>Double authentification</strong> <span>des agents immobiliers, journal des accès, sauvegardes quotidiennes.</span></p></li>
-        </ul>
-        <p class="note"><a class="lien-fleche" href="securite/">Sécurité et données : le détail →</a></p>
-      </div>
-    </section>
-
-    <!-- 13. Agences partenaires du lancement -->
-    <section class="bande nuit" aria-labelledby="titre-partenaires">
-      <div class="conteneur partenaires">
-        <div class="entete-section" style="margin-bottom:0">
-          <span class="surtitre">Agences partenaires du lancement</span>
-          <h2 id="titre-partenaires">Je recherche quelques agences partenaires</h2>
-          <p>Agent de Nuit est en phase de lancement. Je recherche quelques agences indépendantes d'<span class="nowrap">Île-de-France</span> pour le mettre en place avec elles.</p>
-        </div>
-        <div style="display:grid;gap:28px">
-          <ul class="faits">
-            <li><p>Un outil configuré autour de vos règles de rendez-vous, de votre ton et de vos agences.</p></li>
-            <li><p>Un accompagnement direct avec moi, sans service client.</p></li>
-            <li><p>Le mode supervision inclus pendant tout le démarrage.</p></li>
-            <li><p>Vos retours pris en compte en priorité dans les évolutions.</p></li>
-          </ul>
-          <div class="boutons"><a class="bouton" href="mailto:quentin.pro.dpls@gmail.com?subject=Appel%20de%2015%20minutes%20%3A%20Agent%20de%20Nuit&amp;body=Bonjour%20Quentin%2C%0A%0AJe%20souhaite%20%C3%A9changer%2015%20minutes%20au%20sujet%20d%27Agent%20de%20Nuit.%0A%0AAgence%20%3A%0ANombre%20d%27agences%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0ACr%C3%A9neaux%20qui%20me%20conviennent%20%3A%0A%0ACordialement%2C%0A">Réserver un appel de 15 minutes</a></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 14. Qui suis-je -->
-    <section class="bande blanche" aria-labelledby="titre-moi">
-      <div class="conteneur">
-        <div class="entete-section">
-          <span class="surtitre">Qui suis-je</span>
-          <h2 id="titre-moi">Un seul interlocuteur : moi</h2>
-        </div>
-        <div class="moi">
-          <div class="texte">
-            <p class="nom">Quentin Duplessis, fondateur d'Agent de Nuit</p>
-            <p>J'ai travaillé comme maître d'hôtel dans des établissements parisiens de prestige. En salle, un client qui attend est un client perdu. Agent de Nuit repose sur la même idée : répondre vite, répondre juste, et passer la main au bon moment. Je conçois l'outil et je reste votre seul interlocuteur.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 15. FAQ -->
-    <section class="bande" id="faq" aria-labelledby="titre-faq">
-      <div class="conteneur">
-        <div class="entete-section">
-          <span class="surtitre">Questions fréquentes</span>
-          <h2 id="titre-faq">Vos questions</h2>
-        </div>
-        <div class="faq">
-          <details><summary>Le prospect sait-il qu'il parle à une IA ?</summary><p>Oui. L'assistant se présente comme l'assistant IA de votre agence dès le premier message.</p></details>
-          <details><summary>Que se passe-t-il si l'IA ne sait pas répondre ?</summary><p>Elle le dit au prospect et passe la main à l'agent immobilier. Elle n'invente aucune réponse.</p></details>
-          <details><summary>Et si l'IA se trompe ?</summary><p>En supervision, au démarrage, la première réponse et les questions de qualification partent tout de suite ; vos agents immobiliers valident les autres réponses avant l'envoi. L'assistant suit des règles strictes et passe la main dès qu'il a un doute. Les rendez-vous restent provisoires tant que l'agent immobilier ne les a pas validés.</p></details>
-          <details><summary>Que se passe-t-il si vous êtes indisponible ?</summary><p>Le code est documenté et les procédures d'incident sont écrites dès la mise en place. Si l'assistant s'arrête, il se coupe proprement : les contacts portails arrivent chez vous comme avant.</p></details>
-          <details><summary>Faut-il changer de logiciel ?</summary><p>Non. Agent de Nuit travaille avec vos emails et vos agendas Google ou Outlook. Votre logiciel métier reste en place.</p></details>
-          <details><summary>Où sont stockées les données ?</summary><p>La base de données et l'application sont hébergées à Paris. Les services techniques utilisés sont listés sur la page <a href="securite/">Sécurité et données</a>.</p></details>
-          <details><summary>Quand pourrai-je l'utiliser ?</summary><p>Le délai est fixé lors de l'appel de cadrage, selon le nombre d'agences et vos outils. Il comprend une période en mode supervision.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <!-- 16. Contact -->
-    <section class="bande nuit" id="contact" aria-labelledby="titre-contact">
+    <!-- 12. Contact -->
+    <section class="bande nuit revele" id="contact" aria-labelledby="titre-contact">
       <div class="conteneur contact">
-        <div class="entete-section" style="margin-bottom:0">
+        <div class="entete-section sans-marge">
           <span class="surtitre">Contact</span>
           <h2 id="titre-contact">Parlons de votre agence</h2>
-          <p>Un appel de 15 minutes pour voir si Agent de Nuit convient à votre agence.</p>
+          <p>Une démo ou 15 minutes au téléphone, pour voir si Agent de Nuit convient à votre agence.</p>
           <!-- Vidéo de présentation (facultative) : à insérer ici quand elle existe. -->
           <div class="boutons">
-            <a class="bouton" href="mailto:quentin.pro.dpls@gmail.com?subject=Appel%20de%2015%20minutes%20%3A%20Agent%20de%20Nuit&amp;body=Bonjour%20Quentin%2C%0A%0AJe%20souhaite%20%C3%A9changer%2015%20minutes%20au%20sujet%20d%27Agent%20de%20Nuit.%0A%0AAgence%20%3A%0ANombre%20d%27agences%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0ACr%C3%A9neaux%20qui%20me%20conviennent%20%3A%0A%0ACordialement%2C%0A">Réserver un appel de 15 minutes</a>
+            <a class="bouton" href="mailto:quentin.pro.dpls@gmail.com?subject=Demande%20de%20d%C3%A9mo%20Agent%20de%20Nuit&amp;body=Bonjour%20Quentin%2C%0A%0AJe%20souhaite%20voir%20une%20d%C3%A9monstration%20d%27Agent%20de%20Nuit.%0A%0AAgence%20%3A%0ANombre%20d%27agences%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0ACr%C3%A9neaux%20qui%20me%20conviennent%20%3A%0A%0ACordialement%2C%0A">Demander une démo</a>
+            <a class="bouton secondaire" href="mailto:quentin.pro.dpls@gmail.com?subject=Demande%20d%27appel%20de%2015%20minutes%20%3A%20Agent%20de%20Nuit&amp;body=Bonjour%20Quentin%2C%0A%0AJe%20souhaite%20%C3%A9changer%2015%20minutes%20au%20sujet%20d%27Agent%20de%20Nuit.%0A%0AAgence%20%3A%0ANombre%20d%27agences%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0ACr%C3%A9neaux%20qui%20me%20conviennent%20%3A%0A%0ACordialement%2C%0A">Demander un appel de 15 minutes</a>
           </div>
         </div>
         <dl class="coordonnees">
@@ -380,7 +396,7 @@
     </section>
   </main>
 
-  <!-- 17. Pied de page -->
+  <!-- Pied de page -->
   <footer class="pied">
     <div class="conteneur">
       <img class="logo-pied" src="assets/logo/logo-une-ligne-sombre.svg" alt="Agent de Nuit" width="152" height="32">
@@ -402,10 +418,19 @@
       b.addEventListener("click", function () { if (v.paused) { v.play(); } else { v.pause(); } });
       v.addEventListener("play", maj); v.addEventListener("pause", maj); maj();
     })();
-    // Sur ordinateur, « Ce que votre agence fournit » est affiché déplié dans la colonne de droite.
-    var large = window.matchMedia("(min-width: 900px)");
-    function deplier() { document.querySelectorAll("details.fournir").forEach(function (d) { if (large.matches) d.open = true; }); }
-    deplier(); large.addEventListener("change", deplier);
+    // En-tête réduit dès que la page défile.
+    (function () {
+      var e = document.querySelector(".entete"), etat = false;
+      function maj() { var r = window.scrollY > 24; if (r !== etat) { etat = r; e.classList.toggle("reduit", r); } }
+      window.addEventListener("scroll", maj, { passive: true }); maj();
+    })();
+    // Apparition douce des sections au défilement.
+    if (document.documentElement.classList.contains("anim")) {
+      var obs = new IntersectionObserver(function (entrees) {
+        entrees.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("visible"); obs.unobserve(x.target); } });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+      document.querySelectorAll(".revele").forEach(function (s) { obs.observe(s); });
+    }
   </script>
 </body>
 </html>
