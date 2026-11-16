@@ -109,7 +109,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .entete.reduit .conteneur { height: 52px; }
 .entete .logo img { transition: height .25s ease; }
 .entete.reduit .logo img { height: 25px; }
-.entete.reduit .bouton.petit { min-height: 38px; padding-block: 7px; }
 @media (prefers-reduced-motion: reduce) { .entete, .entete .conteneur, .entete .logo img { transition: none; } }
 .logo { display: inline-flex; align-items: center; text-decoration: none; flex: none; }
 .logo img { display: block; height: 30px; width: auto; }
@@ -135,8 +134,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .reperes li { display: inline-flex; align-items: center; gap: 8px; }
 .reperes .ico { width: 18px; height: 18px; color: var(--lune); }
 /* ---------- Simulation du haut de page ---------- */
-.sim-cadre { margin: 0; display: grid; gap: 10px; min-width: 0; }
-.sim { position: relative; display: grid; grid-template-columns: 1fr 1.08fr; gap: 12px; align-items: stretch;
+.sim-cadre { margin: 0; display: grid; gap: 10px; min-width: 0; container-type: inline-size; }
+.sim { position: relative; display: grid; grid-template-columns: minmax(0, .84fr) minmax(0, 1.16fr); gap: 12px; align-items: stretch;
   padding: 44px 14px 14px; background: var(--nuit-2); border: 1px solid var(--nuit-ligne); border-radius: 14px;
   color: var(--encre); font-size: .74rem; line-height: 1.38; user-select: none; }
 .sim-badge { position: absolute; top: 13px; left: 14px; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
@@ -161,7 +160,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .sim-m.ia.ecrit { background: transparent; }
 .sim-m.ia.ecrit p, .sim-m.ia.ecrit time { visibility: hidden; }
 .sim-m.ia.ecrit .sim-ecrit { display: block; }
-.sim-fiche { background: var(--blanc); border-radius: 12px; padding: 12px; display: grid; grid-template-rows: auto auto 1fr; gap: 10px; min-width: 0; }
+.sim-fiche { background: var(--blanc); border-radius: 12px; padding: 12px; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto 1fr; gap: 10px; min-width: 0; }
 .sim-fiche-tete { display: flex; align-items: center; gap: 8px; }
 .sim-fiche-tete > div { flex: 1; min-width: 0; }
 .sim-jauge { width: 42px; height: 42px; flex: none; }
@@ -170,17 +169,18 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .sim-jauge text { font: 700 10.5px var(--sans); fill: var(--encre); font-variant-numeric: tabular-nums; }
 .sim-crit { list-style: none; margin: 0; padding: 0; }
 .sim-crit li { display: grid; grid-template-columns: 13px 1fr auto; gap: 7px; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--ligne); }
-.sim-crit span { color: var(--ardoise); }
+.sim-crit span { color: var(--ardoise); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sim-crit b { opacity: 0; transition: opacity .3s ease; white-space: nowrap; }
 .sim-crit li.on b { opacity: 1; }
 .coche { position: relative; width: 13px; height: 13px; border-radius: 50%; border: 1.5px dashed var(--brume); transition: background-color .3s ease, border-color .3s ease; }
 .sim-crit li.on .coche { background: var(--nuit); border: 1.5px solid var(--nuit); }
 .sim-crit li.on .coche::after { content: ""; position: absolute; left: 3.5px; top: 1.5px; width: 3px; height: 6px; border: solid var(--blanc); border-width: 0 1.6px 1.6px 0; transform: rotate(45deg); }
-.sim-rdv { align-self: end; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 10px;
+.sim-rdv { align-self: end; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 8px; row-gap: 3px; padding: 9px 10px; border-radius: 10px;
   border: 1.5px dashed #E39A6B; background: #FDF1E8; opacity: 0; transform: translateY(6px);
   transition: opacity .4s ease, transform .4s ease, background-color .3s ease, border-color .3s ease; }
 .sim-rdv.on { opacity: 1; transform: none; }
-.sim-rdv small { display: block; font-weight: 700; color: #9A3D12; white-space: nowrap; }
+.sim-rdv > div { display: contents; }
+.sim-rdv small { grid-column: 1 / -1; display: block; font-weight: 700; color: #9A3D12; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sim-rdv b { font-size: .82rem; }
 .sim-rdv .c { display: none; }
 .sim-rdv.confirme { border-style: solid; border-color: #9BD3AE; background: #E8F5EC; }
@@ -198,8 +198,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .sim-pied .legende { font-size: .85rem; color: var(--brume); }
 .sim-pause { flex: none; min-height: 36px; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--nuit-ligne); background: var(--nuit-2); color: var(--lune); font: 600 .8rem/1 var(--sans); cursor: pointer; }
 .sim-pause:hover { background: var(--nuit); }
+@container (max-width: 460px) {
+  .sim { grid-template-columns: minmax(0, 1fr); padding-top: 42px; }
+}
+.sim-heure { position: absolute; top: 13px; right: 14px; width: 9.6rem; text-align: center; white-space: nowrap; font-size: .72rem; font-weight: 700; font-variant-numeric: tabular-nums;
+  color: var(--lune); border: 1px solid var(--nuit-ligne); background: var(--nuit); border-radius: 999px; padding: 2px 10px; transition: background-color .4s ease, color .4s ease; }
+.sim.matin .sim-heure { background: var(--lune); color: var(--nuit); }
 @media (max-width: 520px) {
-  .sim { grid-template-columns: 1fr; padding-top: 42px; }
+  .sim-pied { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
 
 /* ---------- Le problème : frise ---------- */
